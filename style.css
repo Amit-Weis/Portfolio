@@ -1,0 +1,289 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Flex:opsz,wght@8..144,700&display=swap');
+
+.pretitle {
+    color: var(--Schemes-On-Tertiary-Container, #633B48);
+    font-family: "Roboto Flex";
+    font-size: 1.25rem;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 4rem; /* 320% */
+    letter-spacing: -0.01563rem;
+    margin: 0;
+    
+}
+
+.title {
+    width: 30.5625rem;
+    height: 3.5rem;
+    flex-shrink: 0;
+    margin:0;
+    color: var(--Schemes-Tertiary, #7D5260);
+    -webkit-text-stroke-width: 4px;
+    -webkit-text-stroke-color: var(--Schemes-Tertiary-Container, #FFD8E4);
+    font-family: "Roboto Flex";
+    font-size: 6rem;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 4rem; /* 66.667% */
+    margin: 0;
+    letter-spacing: var(--Display-Large-Tracking, -0.01563rem);
+}
+
+.subtitle {
+    margin-top: 3%;
+    color: var(--M3-sys-light-primary-fixed-dim, var(--Schemes-Primary-Fixed-Dim, #D0BCFF));
+    font-family: "Roboto Flex";
+    font-size: 3.375rem;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 4rem; /* 118.519% */
+    letter-spacing: var(--Display-Large-Tracking, -0.01563rem);
+    margin-bottom:1rem;
+}
+
+.main {
+    border-radius: 1.125rem;
+    background: var(--Schemes-Background, #FEF7FF);
+}
+
+.main-hero {
+    width: 39rem; 
+    padding-left: 20%; 
+    padding-top: 12.5%; 
+}
+
+.hero-image {
+    width: 100%;
+    height: auto;
+    max-width: 100%;
+    display: block;
+}
+
+.resume-button {
+    display: flex;
+    padding: 0.5rem 1.25rem;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5rem;
+    flex: 1 0 0;
+    align-self: stretch;
+    border-radius: 1rem;
+    background: var(--Schemes-Secondary-Container, #E8DEF8);
+    border-color: transparent;
+
+    /* M3/Elevation Light/3 */
+    box-shadow: 0px 4px 8px 3px rgba(0, 0, 0, 0.15), 0px 1px 3px 0px rgba(0, 0, 0, 0.30);
+    transition: box-shadow 0.2s, transform 0.15s;
+    position: relative;
+    cursor: pointer;
+    z-index: 1; 
+}
+
+.resume-button:hover {
+    box-shadow: 0px 4px 8px 3px rgba(0, 0, 0, 0.15), 0px 1px 3px 0px rgba(0, 0, 0, 0.30);
+    transform: translateY(-8px);
+    z-index: 10;
+}
+
+.resume-button:active {
+    transform: translateY(-4px);
+}
+
+.resume-button:focus {
+    outline: none;
+}
+
+.resume-button[disabled] {
+    opacity: 0.6;
+    pointer-events: none;
+}
+
+.resume-button-text {
+    color: var(--M3-sys-light-tertiary, var(--Schemes-Tertiary, #7D5260));
+    text-align: center;
+    padding-top: 0;
+    padding-bottom: 0;
+
+    /* M3/label/large */
+    font-family: var(--Label-Large-Font, Roboto);
+    font-size: var(--Label-Large-Size,1rem);
+    font-style: normal;
+    font-weight: 700;
+    line-height: var(--Label-Large-Line-Height, 1.25rem); /* 142.857% */
+    letter-spacing: var(--Label-Large-Tracking, 0.00625rem);
+}
+
+.star {
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    z-index: 1000;
+    padding: 0;
+    width: 30rem;
+    height: 30rem;
+    display: flex;
+    align-items: flex-end;
+    justify-content: flex-end;
+}
+.star svg {
+    width: 100%;
+    height: 100%;
+    display: block;
+}
+
+@media (max-width: 950px) {
+    .navbar {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: auto;
+        transform: none;
+        flex-direction: row;
+        justify-content: flex-end;
+        align-items: center;
+        padding: 0.5rem 1rem;
+
+
+    } 
+    .main-hero {
+        padding-left: 12%; 
+    }
+    .star {
+        width: 25rem;
+        height: 25rem;
+    }
+    .navbar {
+        display: none !important;
+    }
+    .navbar-top {
+        display: flex !important;
+    }
+    .option:not(.selected):hover::after { 
+        transform: translateX(-50%) !important;
+    }
+}
+
+@media (max-width: 750px) {
+    .main-hero {
+        padding-left: 12%; 
+        width: 30rem;
+    }
+}
+
+@media (max-width: 600px) {
+    .main-hero {
+        padding-left: 10%; 
+        width: 30rem;
+        padding-top: 50%;
+    }
+    .star {
+        width: 10rem;
+        height: 10rem;
+    }
+}
+
+@media (max-width: 400px) {
+        .main-hero {
+        padding-left: 2%; 
+        width: 30rem;
+        padding-top: 15rem;
+    }
+}
+@media (max-height: 700px) {
+    .star {
+        width: 20rem;
+        height: 20rem;
+        transform: none;
+    }
+}
+
+.navbar {
+    position: fixed;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    display: flex;
+    width: 5rem;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    flex-shrink: 0;
+    margin-top: 0;
+}
+
+.navbar-top {
+    display: none;
+    position: fixed;
+    padding-top: 6rem;
+    padding-bottom: 1rem;
+    top: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    padding-left: 0;
+    height: auto;
+    flex-direction: row;
+    justify-content: center; /* Center the navbar options horizontally */
+    align-items: center;
+    z-index: 2000;
+    background: var(--Schemes-Background, #FEF7FF);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    gap: 1rem;
+}
+
+.navbar-top .option {
+    margin: 0 0.25rem;
+}
+
+.spacer {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+}
+
+.option {
+    border-radius: 1rem;
+    background: var(--Schemes-Tertiary-Container, #FFD8E4);
+    transition: background 0.2s, border-radius 0.2s, box-shadow 0.2s, transform 0.15s;
+    position: relative;
+}
+.option:not(.selected):hover {
+    box-shadow: 0px 4px 8px 3px rgba(0, 0, 0, 0.15), 0px 1px 3px 0px rgba(0, 0, 0, 0.30);
+    transform: translateY(-8px);
+    z-index: 10;
+}
+.option:not(.selected):hover::after {
+    content: "This section of the website is under construction";
+    position: absolute;
+    left: 50%;
+    top: 110%;
+    transform: translateX(0);
+    background: #fff8fc;
+    color: #7D5260;
+    font-size: 0.95rem;
+    font-family: "Roboto Flex", sans-serif;
+    padding: 0.5rem 1rem;
+    border-radius: 0.75rem;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.10);
+    white-space: nowrap;
+    pointer-events: none;
+    opacity: 1;
+    margin-top: 0.3rem;
+    z-index: 2147483647 !important; 
+}
+
+.option:not(.selected) {
+    background: #ECE6EE;
+    border-radius: 2.5rem;
+}
+
+.option.selected {
+    background: #FFD8E4;
+    filter: none;
+    border-radius: 1rem;
+}
+
+.nav-icon {
+    margin: 1rem;
+    margin-bottom: 0.8rem;
+}

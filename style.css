@@ -71,8 +71,6 @@
     border-radius: 1rem;
     background: var(--Schemes-Secondary-Container, #E8DEF8);
     border-color: transparent;
-
-    /* M3/Elevation Light/3 */
     box-shadow: 0px 4px 8px 3px rgba(0, 0, 0, 0.15), 0px 1px 3px 0px rgba(0, 0, 0, 0.30);
     transition: box-shadow 0.2s, transform 0.15s;
     position: relative;
@@ -104,8 +102,6 @@
     text-align: center;
     padding-top: 0;
     padding-bottom: 0;
-
-    /* M3/label/large */
     font-family: var(--Label-Large-Font, Roboto);
     font-size: var(--Label-Large-Size,1rem);
     font-style: normal;
@@ -209,7 +205,7 @@
     padding-left: 0;
     height: auto;
     flex-direction: row;
-    justify-content: center; /* Center the navbar options horizontally */
+    justify-content: center; 
     align-items: center;
     z-index: 2000;
     background: var(--Schemes-Background, #FEF7FF);

@@ -15,7 +15,6 @@ document.addEventListener('DOMContentLoaded', function() {
       if (option.classList.contains('selected')) {
         e.preventDefault();
         e.stopPropagation();
-        // Optionally, add a small animation or feedback here
       }
     });
   });

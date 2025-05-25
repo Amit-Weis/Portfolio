@@ -36,7 +36,7 @@ document.addEventListener('DOMContentLoaded', function() {
       const page = alt.toLowerCase().replace(/\s+/g, '') + '.html'; // e.g., "Person" → "person.html"
       setTimeout(() => {
         window.location.href = page;
-      }, 10);
+      }, 0);
     });
   });
 });

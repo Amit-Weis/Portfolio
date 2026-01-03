@@ -1,76 +1,59 @@
-<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/x-icon" href="/images/favicon.ico" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Amit Weis</title>
-    <link rel="stylesheet" href="style.css" />
-    <link rel="prefetch" href="/about" />
-  </head>
-  <body class="main">
-    <div class="main">
-      <!-- <div class="navbar navbar-top"> -->
-      <!--     <div class="option selected"> -->
-      <!--         <img src="images/home.svg" alt="index" class="nav-icon" /> -->
-      <!--     </div> -->
-      <!--     <div class="spacer"></div> -->
-      <!--     <div class="option"> -->
-      <!--         <img src="images/person.svg" alt="about" class="nav-icon" /> -->
-      <!--     </div> -->
-      <!--     <div class="option"> -->
-      <!--         <img src="images/experince.svg" alt="Experience" class="nav-icon" /> -->
-      <!--     </div> -->
-      <!--     <div class="option"> -->
-      <!--         <img src="images/projects.svg" alt="Projects" class="nav-icon" /> -->
-      <!--     </div> -->
-      <!-- </div> -->
-      <!---->
-      <!-- <div class = "navbar"> -->
-      <!--    <div class = "option selected"> -->
-      <!--        <img src="images/home.svg" alt="index" class="nav-icon" /> -->
-      <!--    </div>  -->
-      <!--     -->
-      <!--    <div class = "spacer"> -->
-      <!--    </div>  -->
-      <!---->
-      <!--    <div class = "option"> -->
-      <!--        <img src="images/person.svg" alt="about" class="nav-icon" /> -->
-      <!--    </div>  -->
-      <!---->
-      <!--    <div class = "option"> -->
-      <!--        <img src="images/experince.svg" alt="Experience" class="nav-icon" /> -->
-      <!--    </div>  -->
-      <!---->
-      <!--    <div class = "option"> -->
-      <!--        <img src="images/projects.svg" alt="Projects" class="nav-icon" /> -->
-      <!--    </div>  -->
-      <!--     -->
-      <!--    <div class = "spacer"> -->
-      <!--    </div>  -->
-      <!---->
-      <!--    <div class = "option"> -->
-      <!--        <img src="images/chat.svg" alt="contact" class="nav-icon" /> -->
-      <!--    </div>  -->
-      <!-- </div> -->
+<doctype html>
+  <html lang="en">
+    <head>
+      <meta charset="UTF-8" />
+      <link rel="icon" type="image/x-icon" href="/images/favicon.ico" />
+      <meta name="viewport" content="width=device-width, initial-scale=1" />
+      <title>Amit Weis</title>
+      <link rel="stylesheet" href="style.css" />
+      <link rel="prefetch" href="/portfolio.html" />
+    </head>
+    <body class="main">
+      <div class="main">
+        <div class="main-hero">
+          <h3 class="pretitle">Hi, my name is</h3>
+          <div>
+            <img
+              src="images/amit-weis.svg"
+              alt="Amit Weis"
+              class="hero-image"
+            />
+          </div>
+          <h2 class="subtitle">and I build things.</h2>
 
-      <div class="main-hero">
-        <h3 class="pretitle">Hi, my name is</h3>
-        <div>
-          <img src="images/amit-weis.svg" alt="Amit Weis" class="hero-image" />
+          <div class="button-container">
+            <form id="resume-form" action="resume2.pdf" method="get">
+              <button type="submit" class="resume-button" id="resume-button">
+                <img
+                  src="images/resume.svg"
+                  alt="resume"
+                  class="resume-image"
+                />
+                <h1 class="resume-button-text">Résumé</h1>
+              </button>
+            </form>
+
+            <form action="portfolio.html" method="get" style="">
+              <button
+                type="button"
+                class="resume-button"
+                onclick="window.location.href = 'portfolio.html'"
+              >
+                <img
+                  src="images/port.svg"
+                  alt="portfolio"
+                  class="resume-image"
+                />
+                <h1 class="resume-button-text">Portfolio</h1>
+              </button>
+            </form>
+          </div>
         </div>
-        <h2 class="subtitle">and I build things.</h2>
-        <form id="resume-form" action="resume2.pdf" method="get">
-          <button type="submit" class="resume-button" id="resume-button">
-            <img src="images/resume.svg" alt="resume" class="resume-image" />
-            <h1 class="resume-button-text">Résumé</h1>
-          </button>
-        </form>
       </div>
-    </div>
-    <div class="star">
-      <img src="images/star.svg" alt="star" class="star" />
-    </div>
-    <script src="script.js"></script>
-  </body>
-</html>
+      <div class="star">
+        <img src="images/star.svg" alt="star" class="star" />
+      </div>
+      <script src="script.js"></script>
+    </body>
+  </html>
+</doctype>

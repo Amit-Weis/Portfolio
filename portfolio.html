@@ -1,0 +1,225 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Portfolio – Amit Weis</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+
+  <body class="main portfolio">
+    <!-- Return -->
+    <div style="padding: 1.5rem">
+      <button class="resume-button" onclick="window.location.href = '/'">
+        <img src="images/arrow.svg" alt="return" class="resume-image" />
+        <span class="resume-button-text">Return</span>
+      </button>
+    </div>
+
+    <div class="main-hero">
+      <!-- ================= PROJECTS ================= -->
+      <section class="portfolio-section">
+        <div class="portfolio-section-header">
+          <img
+            src="images/proj.svg"
+            alt="proj"
+            class="main-hero"
+            style="width: 50%; height: auto"
+          />
+        </div>
+
+        <div class="bar"></div>
+
+        <div class="portfolio-section-content">
+          <div class="portfolio-item expanded">
+            <div class="portfolio-item-header">
+              <h2 class="jobTitle">Bttrpie</h2>
+            </div>
+            <div class="portfolio-item-content">
+              <div class="portfolio-item-divider"></div>
+              <p class="portfolio-text">
+                Bttrpie is an autonomous mini pool table designed to
+                automatically collect and sort modified pool balls using a
+                3-axis gantry and a custom grabber claw. My team and I designed
+                the entire mechanical system in SolidWorks, validated the design
+                using motion and structural simulations, and fully assembled the
+                robot by hand in the E5 woodshop at the University of Waterloo.
+                See the video below (recommended at 2× speed) to watch the
+                system operate end-to-end.
+              </p>
+
+              <p class="portfolio-text">
+                The robot begins each run by calibrating itself, allowing the
+                user to place it anywhere on the playing surface without manual
+                alignment. Once calibrated, the system establishes its position
+                in three-dimensional space and infers the locations of all other
+                key features on the table. From this point onward, the robot
+                operates completely blind, tracking its position by converting
+                motor encoder rotations into linear translation through a
+                rack-and-pinion gantry mechanism.
+              </p>
+
+              <p class="portfolio-text">
+                The 3-axis gantry enables motion in the X, Y, and Z directions
+                using three independently driven rack-and-pinion stages, each
+                powered by a dedicated motor. Rotation of each motor is
+                converted directly into linear motion of the carriage through a
+                fixed gear rack. Motor encoder feedback is used to track
+                position, while a PID controller regulates motor speed to ensure
+                smooth motion and accurate stopping at target locations.
+              </p>
+
+              <p class="portfolio-text">
+                When the robot reaches the ball collection chute, it identifies
+                each ball using a color sensor mounted beneath the grabber claw.
+                The robot records the position and color of each ball, then
+                executes a simple sorting routine to determine the placement
+                order. Once sorted, the gantry sequentially retrieves each ball
+                and places it in the desired configuration.
+              </p>
+
+              <p class="portfolio-text">
+                Once sorted, the balls are placed one by one into the triangular
+                rack. Due to time constraints, the triangle’s position was not
+                fully constrained in the robot’s coordinate system, occasionally
+                requiring minor manual intervention, as seen in the video. After
+                placement, the triangle is reset, and the table is ready for the
+                next round of play.
+              </p>
+              <div class="portfolio-video">
+                <iframe
+                  src="https://www.youtube.com/embed/3O0Q1q2LcDg"
+                  title="Bttrpie Autonomous Pool Table"
+                  frameborder="0"
+                  allow="
+                    accelerometer;
+                    autoplay;
+                    clipboard-write;
+                    encrypted-media;
+                    gyroscope;
+                    picture-in-picture;
+                  "
+                  allowfullscreen
+                ></iframe>
+              </div>
+            </div>
+          </div>
+
+          <div class="portfolio-item">
+            <div class="portfolio-item-header">
+              <h2 class="jobTitle">ARmatica</h2>
+            </div>
+            <div class="portfolio-item-content">
+              <div class="portfolio-item-divider"></div>
+              <p class="portfolio-text">
+                ARmatica is an augmented reality app built in Unity that assists
+                during circuit assembly by overlaying a 3D model of a circuit
+                schematic directly onto a physical breadboard. This project was
+                built for Jamhacks, a local 36 hour hackathon, and won third
+                place. See the video attached below for a video of the prototype
+                working. You can also explore the rather delirious github page,
+                where you can track the groups collective sanity levels via the
+                names of the commits.
+              </p>
+
+              <p class="portfolio-text">
+                The AR experience is powered by a lightweight tracking module
+                that continuously monitors the breadboard's position and
+                orientation, enabling stable overlay registration even as users
+                move around their workspace. The system uses a predetermined
+                tracking marker, in this case a QR code positioned adjacent to
+                the breadboard, which the device camera detects and uses as a
+                spatial reference point. Once the marker is identified, ARmatica
+                establishes the breadboard's location and orientation in
+                three-dimensional space, allowing the virtual circuit model to
+                be accurately overlaid onto the physical surface.
+              </p>
+
+              <p class="portfolio-text">
+                Due to the nature of making a hackathon project, ARmatica's user
+                workflow is quite convoluted. The workflow begins with the user
+                making a KiCAD file, and exporting it as a STEP file. The user
+                then uploads it to a website, which then uses a flask backend to
+                process it through FreeCAD to generate a glTF file. It then
+                continues to refine the model and add additional information
+                using Blender's CLI tool, and finally exports it as an FBX file
+                which can be used in Unity. This multi-stage conversion is
+                entirely necessary, and we had to fight several different
+                softwares into agreeing to be used like this.
+              </p>
+              <div class="portfolio-video">
+                <video controls>
+                  <source src="images/armatica.mov" type="video/mp4" />
+                  Your browser does not support the video tag.
+                </video>
+              </div>
+            </div>
+          </div>
+          <div class="portfolio-item">
+            <div class="portfolio-item-header">
+              <h2 class="jobTitle">3Dsnake</h2>
+            </div>
+            <div class="portfolio-item-content">
+              <div class="portfolio-item-divider"></div>
+              <p class="portfolio-text">
+                3D Snake is a physical implementation of the classic snake game,
+                rendered on a 5×5×5 LED matrix cube controlled by an Arduino
+                Mega. The project presents several unique engineering
+                challenges: creating intuitive six-degree-of-freedom control in
+                three-dimensional space, managing the 125 individual LEDs
+                required for the matrix display, and operating within the severe
+                memory constraints of embedded hardware (only 4kb of ram!). A
+                video demonstration of the project is available below.
+              </p>
+
+              <p class="portfolio-text">
+                The control scheme uses a WASD+EQ input mapping, where WASD
+                handles horizontal plane movement while E and Q enable vertical
+                navigation through the cube's layers. Player inputs are
+                transmitted to the Arduino via UDP packets, ensuring low-latency
+                communication between the control interface and the physical
+                display. To address the Arduino Mega's limited 4KB RAM, game
+                logic and state management are distributed across multiple
+                microcontrollers, with one Arduino dedicated to LED matrix
+                control while another handles gameplay processing.
+              </p>
+
+              <p class="portfolio-text">
+                The LED matrix employs a multiplexed coordinate system that
+                significantly reduces wiring complexity. Twenty-five vertical
+                cathode lines are soldered together, passing through all five
+                horizontal layers of the cube. Each of the five 5×5 planes has
+                its own common anode connection. To illuminate a specific LED,
+                the system activates one vertical line and one horizontal plane
+                simultaneously, which effectively creates a 3D coordinate system
+                where any position can be addressed using just 30 control pins
+                (25 columns + 5 rows) rather than the 125 individual connections
+                that would otherwise be required.
+              </p>
+
+              <p class="portfolio-text">
+                The Arduino rapidly cycles through each plane in sequence,
+                activating only the LEDs needed for that layer before moving to
+                the next. This technique leverages the human eye's persistence
+                of vision to create the illusion of a fully lit
+                three-dimensional display, but in reality, if you slow down the
+                footage (or if the Arduino lags) you can see that only one LED
+                is on at a time.
+              </p>
+
+              <div class="portfolio-video">
+                <video controls>
+                  <source src="images/3d_snake.mov" type="video/mp4" />
+                  Your browser does not support the video tag.
+                </video>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <script src="portfolio.js"></script>
+  </body>
+  <html></html>
+</html>

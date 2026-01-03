@@ -299,3 +299,186 @@
   margin-bottom: 0.8rem;
 }
 
+/* ===========================
+   PORTFOLIO STYLES & OVERRIDES
+   =========================== */
+
+/* Remove hero top padding ONLY on portfolio */
+body.portfolio .main-hero {
+  padding-top: 0 !important;
+}
+
+/* Increase width on large screens */
+@media (min-width: 1100px) {
+  body.portfolio .main-hero {
+    max-width: 50vw;
+  }
+}
+
+/* Section container */
+.portfolio-section {
+  margin-bottom: 3rem;
+}
+
+/* Section header */
+.portfolio-section-header {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+/* Main section divider bar */
+.bar {
+  width: 100%;
+  height: 6px;
+  background: #633b48;
+  border-radius: 3px;
+  margin: 1rem 0rem 1.5rem 0;
+  margin-bottom: 5rem;
+}
+/* Big dropdown arrow */
+.portfolio-section-header::after {
+  content: " ";
+  font-size: 2.25rem;
+  font-weight: 700;
+  color: #7d5260;
+  margin-left: 1rem;
+  transition: transform 0.3s;
+}
+
+.portfolio-section.collapsed .portfolio-section-header::after {
+  transform: rotate(-90deg);
+}
+
+/* Section content */
+.portfolio-section-content {
+  margin-top: 1.5rem;
+}
+
+/* Portfolio item card */
+.portfolio-item {
+  margin-top: 1.5rem;
+  padding: 1.5rem;
+  background: #fff8fc;
+  border-radius: 1.25rem;
+  box-shadow:
+    0px 4px 8px 3px rgba(0, 0, 0, 0.08),
+    0px 1px 3px 0px rgba(0, 0, 0, 0.15);
+}
+
+/* Item header */
+.portfolio-item-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+}
+
+/* Big item toggle */
+.portfolio-item-header::after {
+  content: "+";
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: #633b48;
+  margin-left: 1rem;
+}
+
+.portfolio-item.expanded .portfolio-item-header::after {
+  content: "–";
+}
+
+/* Item content */
+.portfolio-item-content {
+  margin-top: 1rem;
+  display: none;
+}
+
+.portfolio-item.expanded .portfolio-item-content {
+  display: block;
+}
+
+/* Resume-style inner divider */
+.portfolio-item-divider {
+  width: 100%;
+  height: 4px;
+  background: #633b48;
+  border-radius: 2px;
+  margin: 0.75rem 0 1rem 0;
+}
+
+/* Body text */
+.portfolio-text {
+  font-family: Georgia, serif;
+  font-size: 1.05rem;
+  line-height: 1.6;
+  color: #1d1b20;
+  margin-bottom: 1rem;
+}
+
+/* Image placeholder */
+.portfolio-image {
+  width: 100%;
+  height: 12rem;
+  background: #e8def8;
+  border-radius: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #633b48;
+  font-weight: 700;
+  margin-top: 1rem;
+}
+
+/* Title typography matches pretitle style (not size) */
+body.portfolio .sectionTitle,
+body.portfolio .jobTitle {
+  font-family: "Roboto Flex";
+  font-weight: 700;
+  letter-spacing: -0.01563rem;
+  color: #633b48;
+}
+
+/* Button container to align buttons side by side */
+.button-container {
+  display: flex;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+/* Make buttons equal width */
+.button-container .resume-button {
+  flex: 1;
+}
+
+/* Responsive: stack buttons on small screens */
+@media (max-width: 600px) {
+  .button-container {
+    flex-direction: column;
+  }
+}
+/* Embedded YouTube video (responsive) */
+.portfolio-video {
+  position: relative;
+  width: 100%;
+  padding-top: 56.25%; /* 16:9 aspect ratio */
+  margin-top: 1.25rem;
+  border-radius: 1rem;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.portfolio-video iframe {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+
+.portfolio-video video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+

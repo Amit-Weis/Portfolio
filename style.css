@@ -1,13 +1,16 @@
 @import url("https://fonts.googleapis.com/css2?family=Roboto+Flex:opsz,wght@8..144,700&display=swap");
 
-.pretitle {
-  color: var(--Schemes-On-Tertiary-Container, #633b48);
+/* ===========================
+   GLOBAL & TYPOGRAPHY
+   =========================== */
 
+.pretitle {
+  color: #633b48;
   font-family: "Roboto Flex";
   font-size: clamp(0.5rem, 6vw, 1.25rem);
   font-style: normal;
   font-weight: 700;
-  line-height: 4rem; /* 320% */
+  line-height: 4rem;
   letter-spacing: -0.01563rem;
   margin: 0;
 }
@@ -16,36 +19,33 @@
   width: 100%;
   max-width: 30.5625rem;
   margin: 0 auto;
-  color: var(--Schemes-Tertiary, #7d5260);
+  color: #7d5260;
   -webkit-text-stroke-width: 4px;
-  -webkit-text-stroke-color: var(--Schemes-Tertiary-Container, #ffd8e4);
+  -webkit-text-stroke-color: #ffd8e4;
   font-family: "Roboto Flex";
   font-size: clamp(2rem, 10vw, 6rem);
   font-style: normal;
   font-weight: 700;
   line-height: 1.2;
-  letter-spacing: var(--Display-Large-Tracking, -0.01563rem);
+  letter-spacing: -0.01563rem;
   text-align: center;
 }
 
 .subtitle {
   margin-top: 3%;
-  color: var(
-    --M3-sys-light-primary-fixed-dim,
-    var(--Schemes-Primary-Fixed-Dim, #d0bcff)
-  );
+  color: #d0bcff;
   font-family: "Roboto Flex";
   font-size: clamp(1.5rem, 6vw, 3.375rem);
   font-style: normal;
   font-weight: 700;
   line-height: 1.3;
-  letter-spacing: var(--Display-Large-Tracking, -0.01563rem);
+  letter-spacing: -0.01563rem;
   margin-bottom: 1rem;
 }
 
 .main {
   border-radius: 1.125rem;
-  background: var(--Schemes-Background, #fef7ff);
+  background: #fef7ff;
 }
 
 .main-hero {
@@ -63,6 +63,21 @@
   display: block;
 }
 
+/* ===========================
+   BUTTONS
+   =========================== */
+
+.button-container {
+  display: flex;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.button-container .resume-button {
+  flex: 1;
+  min-width: 0;
+}
+
 .resume-button {
   display: flex;
   padding: 0.5rem 1.25rem;
@@ -72,7 +87,7 @@
   flex: 1 0 0;
   align-self: stretch;
   border-radius: 1rem;
-  background: var(--Schemes-Secondary-Container, #e8def8);
+  background: #e8def8;
   border-color: transparent;
   box-shadow:
     0px 4px 8px 3px rgba(0, 0, 0, 0.15),
@@ -107,17 +122,21 @@
 }
 
 .resume-button-text {
-  color: var(--M3-sys-light-tertiary, var(--Schemes-Tertiary, #7d5260));
+  color: #7d5260;
   text-align: center;
   padding-top: 0;
   padding-bottom: 0;
   font-family: "Roboto Flex";
-  font-size: var(--Label-Large-Size, 1rem);
+  font-size: 1rem;
   font-style: normal;
   font-weight: 700;
-  line-height: var(--Label-Large-Line-Height, 1.25rem); /* 142.857% */
-  letter-spacing: var(--Label-Large-Tracking, 0.00625rem);
+  line-height: 1.25rem;
+  letter-spacing: 0.00625rem;
 }
+
+/* ===========================
+   DECORATIVE ELEMENTS
+   =========================== */
 
 .star {
   position: fixed;
@@ -130,231 +149,43 @@
   align-items: flex-end;
   justify-content: flex-end;
 }
+
 .star svg {
   width: 100%;
   height: 100%;
   display: block;
 }
 
-@media (max-width: 950px) {
-  .navbar {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: auto;
-    transform: none;
-    flex-direction: row;
-    justify-content: flex-end;
-    align-items: center;
-    padding: 0.5rem 1rem;
-  }
-  .main-hero {
-    padding-left: 12%;
-  }
-  .star {
-    width: 25rem;
-    height: 25rem;
-  }
-  .navbar {
-    display: none !important;
-  }
-  .navbar-top {
-    display: flex !important;
-  }
-  .option:not(.selected):hover::after {
-    transform: translateX(-50%) !important;
-  }
-}
-
-@media (max-width: 600px) {
-  .main-hero {
-    padding-top: 50%;
-    padding-left: 2%;
-  }
-  .star {
-    width: 10rem;
-    height: 10rem;
-  }
-}
-
-@media (max-width: 400px) {
-  .main-hero {
-    padding-top: 15rem;
-  }
-}
-
-.navbar {
-  position: fixed;
-  left: 0;
-  top: 50%;
-  transform: translateY(-50%);
-  display: flex;
-  width: 5rem;
-  flex-direction: column;
-  align-items: center;
-  gap: 1rem;
-  flex-shrink: 0;
-  margin-top: 0;
-}
-
-.navbar-top {
-  display: none;
-  position: fixed;
-  padding-top: 6rem;
-  padding-bottom: 1rem;
-  top: 0;
-  left: 0;
-  right: 0;
-  width: 100%;
-  padding-left: 0;
-  height: auto;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  z-index: 2000;
-  background: var(--Schemes-Background, #fef7ff);
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
-  gap: 0;
-}
-
-.navbar-top .option {
-  margin: 0 0.25rem;
-}
-
-.spacer {
-  margin-top: 1rem;
-  margin-bottom: 1rem;
-  margin-left: 1rem;
-  margin-right: 1rem;
-}
-
-.option {
-  border-radius: 1rem;
-  background: var(--Schemes-Tertiary-Container, #ffd8e4);
-  transition:
-    background 0.5s,
-    border-radius 0.5s,
-    box-shadow 0.5s,
-    transform 0.3s,
-    filter 0.4s,
-    scale 0.4s;
-  position: relative;
-  filter: brightness(0.95) scale(0.98);
-}
-.option.selected {
-  background: #ffd8e4;
-  filter: brightness(1.1) scale(1.08);
-  border-radius: 1rem;
-  transition:
-    background 0.5s,
-    border-radius 0.5s,
-    box-shadow 0.5s,
-    transform 0.3s,
-    filter 0.4s,
-    scale 0.4s;
-}
-.option:not(.selected) {
-  background: #ece6ee;
-  border-radius: 2.5rem;
-  filter: brightness(0.95) scale(0.98);
-  transition:
-    background 0.5s,
-    border-radius 0.5s,
-    box-shadow 0.5s,
-    transform 0.3s,
-    filter 0.4s,
-    scale 0.4s;
-}
-
-.option:not(.selected):hover {
-  box-shadow:
-    0px 4px 8px 3px rgba(0, 0, 0, 0.15),
-    0px 1px 3px 0px rgba(0, 0, 0, 0.3);
-  transform: translateY(-8px);
-  z-index: 10;
-}
-.option:not(.selected):hover::after {
-  content: "This section of the website is under construction";
-  position: absolute;
-  left: 50%;
-  top: 110%;
-  transform: translateX(0);
-  background: #fff8fc;
-  color: #7d5260;
-  font-size: 0.95rem;
-  font-family: "Roboto Flex", sans-serif;
-  padding: 0.5rem 1rem;
-  border-radius: 0.75rem;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-  white-space: nowrap;
-  pointer-events: none;
-  opacity: 1;
-  margin-top: 0.3rem;
-  z-index: 2147483647 !important;
-}
-
-.nav-icon {
-  margin: 1rem;
-  margin-bottom: 0.8rem;
-}
-
 /* ===========================
-   PORTFOLIO STYLES & OVERRIDES
+   PORTFOLIO PAGE
    =========================== */
 
-/* Remove hero top padding ONLY on portfolio */
 body.portfolio .main-hero {
   padding-top: 0 !important;
 }
 
-/* Increase width on large screens */
-@media (min-width: 1100px) {
-  body.portfolio .main-hero {
-    max-width: 50vw;
-  }
-}
-
-/* Section container */
 .portfolio-section {
   margin-bottom: 3rem;
 }
 
-/* Section header */
 .portfolio-section-header {
   display: flex;
   justify-content: flex-start;
   align-items: center;
 }
-/* Main section divider bar */
+
 .bar {
   width: 100%;
   height: 6px;
   background: #633b48;
   border-radius: 3px;
-  margin: 1rem 0rem 1.5rem 0;
-  margin-bottom: 5rem;
-}
-/* Big dropdown arrow */
-.portfolio-section-header::after {
-  content: " ";
-  font-size: 2.25rem;
-  font-weight: 700;
-  color: #7d5260;
-  margin-left: 1rem;
-  transition: transform 0.3s;
+  margin: 1rem 0 5rem 0;
 }
 
-.portfolio-section.collapsed .portfolio-section-header::after {
-  transform: rotate(-90deg);
-}
-
-/* Section content */
 .portfolio-section-content {
   margin-top: 1.5rem;
 }
 
-/* Portfolio item card */
 .portfolio-item {
   margin-top: 1.5rem;
   padding: 1.5rem;
@@ -365,7 +196,6 @@ body.portfolio .main-hero {
     0px 1px 3px 0px rgba(0, 0, 0, 0.15);
 }
 
-/* Item header */
 .portfolio-item-header {
   display: flex;
   justify-content: space-between;
@@ -373,7 +203,6 @@ body.portfolio .main-hero {
   cursor: pointer;
 }
 
-/* Big item toggle */
 .portfolio-item-header::after {
   content: "+";
   font-size: 1.75rem;
@@ -386,7 +215,6 @@ body.portfolio .main-hero {
   content: "–";
 }
 
-/* Item content */
 .portfolio-item-content {
   margin-top: 1rem;
   display: none;
@@ -396,7 +224,6 @@ body.portfolio .main-hero {
   display: block;
 }
 
-/* Resume-style inner divider */
 .portfolio-item-divider {
   width: 100%;
   height: 4px;
@@ -405,7 +232,6 @@ body.portfolio .main-hero {
   margin: 0.75rem 0 1rem 0;
 }
 
-/* Body text */
 .portfolio-text {
   font-family: Georgia, serif;
   font-size: 1.05rem;
@@ -414,7 +240,6 @@ body.portfolio .main-hero {
   margin-bottom: 1rem;
 }
 
-/* Image placeholder */
 .portfolio-image {
   width: 100%;
   height: 12rem;
@@ -428,7 +253,6 @@ body.portfolio .main-hero {
   margin-top: 1rem;
 }
 
-/* Title typography matches pretitle style (not size) */
 body.portfolio .sectionTitle,
 body.portfolio .jobTitle {
   font-family: "Roboto Flex";
@@ -437,36 +261,18 @@ body.portfolio .jobTitle {
   color: #633b48;
 }
 
-/* Button container to align buttons side by side */
-.button-container {
-  display: flex;
-  gap: 1rem;
-  margin-top: 1rem;
-}
-
-/* Make buttons equal width */
-.button-container .resume-button {
-  flex: 1;
-}
-
-/* Responsive: stack buttons on small screens */
-@media (max-width: 600px) {
-  .button-container {
-    flex-direction: column;
-  }
-}
-/* Embedded YouTube video (responsive) */
 .portfolio-video {
   position: relative;
   width: 100%;
-  padding-top: 56.25%; /* 16:9 aspect ratio */
+  padding-top: 56.25%;
   margin-top: 1.25rem;
   border-radius: 1rem;
   overflow: hidden;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 }
 
-.portfolio-video iframe {
+.portfolio-video iframe,
+.portfolio-video video {
   position: absolute;
   inset: 0;
   width: 100%;
@@ -475,10 +281,85 @@ body.portfolio .jobTitle {
 }
 
 .portfolio-video video {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
   object-fit: cover;
 }
 
+/* ===========================
+   RESPONSIVE
+   =========================== */
+
+@media (min-width: 1100px) {
+  body.portfolio .main-hero {
+    max-width: 50vw;
+  }
+}
+
+@media (max-width: 950px) {
+  .navbar {
+    display: none !important;
+  }
+
+  .navbar-top {
+    display: flex !important;
+  }
+
+  .main-hero {
+    padding-left: 12%;
+  }
+
+  .star {
+    width: 25rem;
+    height: 25rem;
+  }
+
+  .option:not(.selected):hover::after {
+    transform: translateX(-50%) !important;
+  }
+}
+
+@media (max-width: 768px) {
+  body.portfolio .main-hero {
+    width: 95%;
+    max-width: 100%;
+  }
+
+  .portfolio-section-header img {
+    width: 70% !important;
+  }
+}
+
+@media (max-width: 600px) {
+  .main-hero {
+    padding-top: 50%;
+    padding-left: 2%;
+  }
+
+  body.portfolio .main-hero {
+    width: 98%;
+  }
+
+  .star {
+    width: 10rem;
+    height: 10rem;
+  }
+
+  .button-container {
+    flex-direction: row;
+    gap: 0.5rem;
+  }
+
+  .resume-button-text {
+    font-size: 0.875rem;
+  }
+
+  .resume-image {
+    width: 1.25rem;
+    height: 1.25rem;
+  }
+}
+
+@media (max-width: 400px) {
+  .main-hero {
+    padding-top: 15rem;
+  }
+}

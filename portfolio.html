@@ -107,6 +107,59 @@
 
           <div class="portfolio-item">
             <div class="portfolio-item-header">
+              <h2 class="jobTitle">Warpz</h2>
+            </div>
+            <div class="portfolio-item-content">
+              <div class="portfolio-item-divider"></div>
+              <p class="portfolio-text">
+                Warpz is an automated 3D model generation system that transforms
+                a series of photographs into detailed three-dimensional meshes
+                using photogrammetry. This project was made for a local robotics
+                competition in waterloo, where we won first place. See the pitch
+                video attached below. The system integrated Meshroom, an
+                open-source photogrammetry software built on the AliceVision
+                framework, with custom hardware automation to create a hands-off
+                solution for 3D scanning. Users simply place an object on the
+                turntable, and the system handles the entire capture and
+                processing pipeline. Unfortunately, all website ready footage of
+                the project has been lost, the entire thing dissasmebled, and
+                with the github repos inaccurate to the final version, this
+                project is gone for good.
+              </p>
+
+              <p class="portfolio-text">
+                The hardware system consisted of two primary components: a
+                robotic arm that maintains consistent camera positioning and
+                orientation, and a motorized rotating platform that turns the
+                object being scanned. This automated setup ensured repeatable
+                camera angles around the subject. The robotic arm kept the
+                camera level throughout the capture sequence, eliminating the
+                manual effort typically required in photogrammetry workflows.
+              </p>
+
+              <p class="portfolio-text">
+                The rotation mechanism divided a full 360-degree revolution into
+                predetermined intervals, capturing 50 photographs as the
+                turntable completes its rotation. The coverage formed by these
+                successive images was required for Meshroom's
+                structure-from-motion algorithms to successfully reconstruct the
+                geometry. Once image capture completed, the photographs are
+                automatically fed into Meshroom's processing pipeline on a
+                sepearte server, fed information via python websockets, which
+                extracts features, matches them across views, and generates the
+                final textured 3D model.
+              </p>
+
+              <p class="portfolio-text">
+                The project includes both hardware control software running on a
+                Raspberry Pi to coordinate the robotic arm and turntable, and a
+                web interface built with React and TypeScript that allows users
+                to monitor capture progress and download completed models.
+              </p>
+            </div>
+          </div>
+          <div class="portfolio-item">
+            <div class="portfolio-item-header">
               <h2 class="jobTitle">ARmatica</h2>
             </div>
             <div class="portfolio-item-content">

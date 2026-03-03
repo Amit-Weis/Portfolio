@@ -3,6 +3,6 @@ const resumeForm = document.getElementById("resume-form");
 if (resumeForm) {
   resumeForm.addEventListener("submit", function (e) {
     e.preventDefault();
-    window.open("resume.pdf", "_blank");
+    window.open("resume2.pdf", "_blank");
   });
 }

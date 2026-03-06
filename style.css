@@ -280,7 +280,7 @@ body.portfolio .main-hero {
   border-radius: 1rem;
   max-width: 100%;
   max-height: 100%;
-  object-fit: contain; /* prevents stretching */
+  object-fit: contain;
 }
 
 body.portfolio .sectionTitle,
@@ -391,5 +391,324 @@ body.portfolio .jobTitle {
 @media (max-width: 400px) {
   .main-hero {
     padding-top: 15rem;
+  }
+}
+
+/* ===========================
+   ANALYTICS DASHBOARD
+   =========================== */
+
+body.dashboard .main-hero {
+  padding-top: 0 !important;
+}
+
+/* Login screen */
+.dash-login {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 90vh;
+  gap: 1rem;
+}
+
+.dash-login-title {
+  font-family: "Roboto Flex";
+  font-weight: 700;
+  font-size: clamp(1.5rem, 6vw, 2.5rem);
+  color: var(--color-primary);
+  letter-spacing: -0.02em;
+  -webkit-text-stroke-width: 2px;
+  -webkit-text-stroke-color: var(--color-primary-pale);
+}
+
+.dash-login-sub {
+  font-family: "Roboto Flex";
+  font-size: 0.8rem;
+  color: var(--color-text-secondary);
+  margin-bottom: 0.5rem;
+}
+
+.dash-input {
+  background: var(--color-bg-card);
+  border: 2px solid var(--color-primary-pale);
+  border-radius: 0.75rem;
+  color: var(--color-text-main);
+  font-family: "Roboto Flex";
+  font-size: 0.95rem;
+  font-weight: 700;
+  padding: 0.6rem 1.25rem;
+  outline: none;
+  width: 260px;
+  box-shadow: var(--shadow-card);
+  transition: border-color 0.2s;
+}
+
+.dash-input:focus {
+  border-color: var(--color-primary);
+}
+
+.dash-login-btn {
+  flex: unset !important;
+  align-self: unset !important;
+  width: 260px;
+}
+
+.dash-error {
+  font-family: "Roboto Flex";
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: #b00020;
+  min-height: 1.2rem;
+}
+
+/* Dashboard wrapper */
+.dash-wrap {
+  padding-bottom: 4rem;
+}
+
+.dash-page-sub {
+  font-family: "Roboto Flex";
+  font-size: 0.75rem;
+  color: var(--color-text-secondary);
+  margin-bottom: 2rem;
+}
+
+/* Summary cards grid */
+.dash-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.dash-card {
+  background: var(--color-bg-card);
+  border-radius: 1.25rem;
+  box-shadow: var(--shadow-card);
+  padding: 1.25rem 1.5rem;
+}
+
+.dash-card--accent .dash-card-value {
+  color: var(--color-primary);
+}
+
+.dash-card--danger .dash-card-value {
+  color: var(--color-primary-dark);
+  opacity: 0.6;
+}
+
+.dash-card-label {
+  font-family: "Roboto Flex";
+  font-size: 0.65rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--color-text-secondary);
+  margin-bottom: 0.5rem;
+}
+
+.dash-card-value {
+  font-family: "Roboto Flex";
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--color-text-main);
+  line-height: 1;
+  letter-spacing: -0.03em;
+}
+
+.dash-card-sub {
+  font-family: "Roboto Flex";
+  font-size: 0.7rem;
+  color: var(--color-text-secondary);
+  margin-top: 0.4rem;
+}
+
+/* Sections */
+.dash-section {
+  margin-bottom: 2rem;
+}
+
+.dash-section-title {
+  font-family: "Roboto Flex";
+  font-size: 0.65rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--color-text-secondary);
+  margin-bottom: 0.75rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 3px solid var(--color-primary-pale);
+}
+
+/* Daily bar chart */
+.dash-chart-wrap {
+  background: var(--color-bg-card);
+  border-radius: 1.25rem;
+  box-shadow: var(--shadow-card);
+  padding: 1.25rem 1.5rem;
+  overflow-x: auto;
+}
+
+.dash-legend {
+  display: flex;
+  gap: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+.dash-legend-item {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-family: "Roboto Flex";
+  font-size: 0.7rem;
+  font-weight: 700;
+  color: var(--color-text-secondary);
+}
+
+.dash-legend-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 3px;
+}
+
+.dash-legend-dot--human {
+  background: var(--color-primary);
+}
+.dash-legend-dot--bot {
+  background: var(--color-primary-pale);
+}
+
+.dash-chart-bars {
+  display: flex;
+  align-items: flex-end;
+  gap: 3px;
+  height: 100px;
+  min-width: 600px;
+}
+
+.dash-bar-group {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  flex: 1;
+  min-width: 16px;
+}
+
+.dash-bar {
+  width: 100%;
+  border-radius: 3px 3px 0 0;
+  min-height: 1px;
+}
+
+.dash-bar--human {
+  background: var(--color-primary);
+}
+.dash-bar--bot {
+  background: var(--color-primary-pale);
+}
+
+.dash-bar-label {
+  font-family: "Roboto Flex";
+  font-size: 0.5rem;
+  font-weight: 700;
+  color: var(--color-text-secondary);
+  writing-mode: vertical-rl;
+  transform: rotate(180deg);
+  margin-top: 4px;
+  white-space: nowrap;
+}
+
+/* Horizontal bar rows (projects, referrers) */
+.dash-hbar-row {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 0.75rem;
+}
+
+.dash-hbar-label {
+  width: 110px;
+  min-width: 110px;
+  font-family: "Roboto Flex";
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--color-text-main);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.dash-hbar-track {
+  flex: 1;
+  background: var(--color-primary-pale);
+  border-radius: 99px;
+  height: 8px;
+  overflow: hidden;
+}
+
+.dash-hbar-fill {
+  height: 100%;
+  border-radius: 99px;
+  background: var(--color-primary);
+  transition: width 0.5s ease;
+}
+
+.dash-hbar-fill--secondary {
+  background: var(--color-primary-light);
+}
+
+.dash-hbar-count {
+  min-width: 28px;
+  text-align: right;
+  font-family: "Roboto Flex";
+  font-size: 0.7rem;
+  font-weight: 700;
+  color: var(--color-text-secondary);
+}
+
+/* Timezone list */
+.dash-tz-list {
+  columns: 2;
+  column-gap: 2rem;
+}
+
+.dash-tz-item {
+  break-inside: avoid;
+  display: flex;
+  justify-content: space-between;
+  padding: 0.35rem 0;
+  border-bottom: 1px solid var(--color-primary-pale);
+  font-family: "Roboto Flex";
+  font-size: 0.75rem;
+  color: var(--color-text-secondary);
+  gap: 1rem;
+}
+
+.dash-tz-name {
+  color: var(--color-text-main);
+  font-weight: 700;
+}
+
+/* Empty state */
+.dash-empty {
+  font-family: "Roboto Flex";
+  font-size: 0.8rem;
+  color: var(--color-text-secondary);
+}
+
+/* Dashboard uses portfolio-item cards for content sections */
+body.dashboard .portfolio-item {
+  margin-top: 0;
+}
+
+@media (max-width: 600px) {
+  .dash-tz-list {
+    columns: 1;
+  }
+
+  .dash-grid {
+    grid-template-columns: repeat(2, 1fr);
   }
 }

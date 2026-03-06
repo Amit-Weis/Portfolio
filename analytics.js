@@ -59,6 +59,11 @@
     return getBotScore() < 4;
   }
 
+  // ── Self-exclusion (site owner do-not-track cookie) ──────────
+  function isSelf() {
+    return document.cookie.split(";").some((c) => c.trim() === "aw_no_track=1");
+  }
+
   // ── Fingerprint (non-invasive session ID) ────────────────────
   function getSessionId() {
     let sid = sessionStorage.getItem("_asid");
@@ -83,6 +88,7 @@
 
   // ── Send event to proxy ──────────────────────────────────────
   async function track(event, payload = {}) {
+    if (isSelf()) return; // skip tracking for site owner
     const body = {
       event,
       page: window.location.pathname,

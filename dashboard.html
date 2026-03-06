@@ -1,0 +1,230 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Analytics – Amit Weis</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body class="main dashboard">
+    <!-- Login -->
+    <div id="login-screen" class="dash-login">
+      <div class="dash-login-title">analytics</div>
+      <p class="dash-login-sub">amit weis · amirweis.com</p>
+      <input
+        type="password"
+        id="token-input"
+        class="dash-input"
+        placeholder="dashboard secret"
+      />
+      <button class="resume-button dash-login-btn" onclick="loadDashboard()">
+        <span class="resume-button-text">enter →</span>
+      </button>
+      <div class="dash-error" id="login-error"></div>
+    </div>
+
+    <!-- Dashboard -->
+    <div id="dashboard" class="dash-wrap" style="display: none">
+      <div class="main-hero" style="padding-top: 2rem">
+        <h1 class="pretitle" style="font-size: 1rem; line-height: 2rem">
+          analytics
+        </h1>
+        <p class="dash-page-sub">amit weis · human-filtered · upstash redis</p>
+
+        <!-- Summary Cards -->
+        <div class="dash-grid" id="summary-cards"></div>
+
+        <!-- Daily Chart -->
+        <div class="dash-section">
+          <div class="dash-section-title">visits — last 30 days</div>
+          <div class="dash-chart-wrap">
+            <div class="dash-legend">
+              <div class="dash-legend-item">
+                <div class="dash-legend-dot dash-legend-dot--human"></div>
+                human
+              </div>
+              <div class="dash-legend-item">
+                <div class="dash-legend-dot dash-legend-dot--bot"></div>
+                bot / scraper
+              </div>
+            </div>
+            <div class="dash-chart-bars" id="daily-chart"></div>
+          </div>
+        </div>
+
+        <!-- Projects -->
+        <div class="dash-section">
+          <div class="dash-section-title">portfolio items expanded</div>
+          <div class="portfolio-item" id="projects-chart"></div>
+        </div>
+
+        <!-- Referrers -->
+        <div class="dash-section">
+          <div class="dash-section-title">referrers</div>
+          <div class="portfolio-item" id="referrers-chart"></div>
+        </div>
+
+        <!-- Timezones -->
+        <div class="dash-section">
+          <div class="dash-section-title">timezones (top 20)</div>
+          <div class="portfolio-item" id="tz-list"></div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      function loadDashboard() {
+        const secret = document.getElementById("token-input").value.trim();
+        if (!secret) return;
+
+        fetch(`/api/analytics-data?token=${encodeURIComponent(secret)}`)
+          .then((r) => {
+            if (r.status === 401) throw new Error("bad token");
+            if (!r.ok) throw new Error("server error");
+            return r.json();
+          })
+          .then(render)
+          .catch((e) => {
+            document.getElementById("login-error").textContent =
+              e.message === "bad token"
+                ? "wrong password"
+                : "error loading data";
+          });
+      }
+
+      document
+        .getElementById("token-input")
+        .addEventListener("keydown", (e) => {
+          if (e.key === "Enter") loadDashboard();
+        });
+
+      function render(data) {
+        document.getElementById("login-screen").style.display = "none";
+        document.getElementById("dashboard").style.display = "block";
+
+        const {
+          totals,
+          projectClicks,
+          timezones,
+          referrers,
+          avgTimeOnPage,
+          daily,
+        } = data;
+
+        const human = parseInt(totals.human || 0);
+        const bot = parseInt(totals.bot || 0);
+        const total = human + bot;
+        const humanPct = total ? Math.round((human / total) * 100) : 0;
+        const resumes = parseInt(totals.resume_downloads || 0);
+
+        const cards = [
+          {
+            label: "total visits",
+            value: total.toLocaleString(),
+            sub: "all time",
+          },
+          {
+            label: "human visits",
+            value: human.toLocaleString(),
+            sub: `${humanPct}% of total`,
+            accent: true,
+          },
+          {
+            label: "bot / scraper",
+            value: bot.toLocaleString(),
+            sub: `${100 - humanPct}% of total`,
+            danger: true,
+          },
+          {
+            label: "resume downloads",
+            value: resumes.toLocaleString(),
+            sub: "all time",
+          },
+          {
+            label: "avg time on page",
+            value: `${avgTimeOnPage}s`,
+            sub: "across all sessions",
+          },
+        ];
+
+        document.getElementById("summary-cards").innerHTML = cards
+          .map(
+            (c) => `
+            <div class="dash-card${c.accent ? " dash-card--accent" : c.danger ? " dash-card--danger" : ""}">
+              <div class="dash-card-label">${c.label}</div>
+              <div class="dash-card-value">${c.value}</div>
+              <div class="dash-card-sub">${c.sub}</div>
+            </div>`,
+          )
+          .join("");
+
+        const maxVisits = Math.max(
+          ...daily.map((d) => parseInt(d.human || 0) + parseInt(d.bot || 0)),
+          1,
+        );
+
+        document.getElementById("daily-chart").innerHTML = daily
+          .map((d) => {
+            const h = parseInt(d.human || 0);
+            const b = parseInt(d.bot || 0);
+            const hPx = Math.max(
+              Math.round((h / maxVisits) * 90),
+              h > 0 ? 2 : 0,
+            );
+            const bPx = Math.max(
+              Math.round((b / maxVisits) * 90),
+              b > 0 ? 2 : 0,
+            );
+            const label = d.date.slice(5);
+            return `
+              <div class="dash-bar-group" title="${d.date}: ${h} human, ${b} bot">
+                <div class="dash-bar dash-bar--human" style="height:${hPx}px"></div>
+                <div class="dash-bar dash-bar--bot"   style="height:${bPx}px"></div>
+                <div class="dash-bar-label">${label}</div>
+              </div>`;
+          })
+          .join("");
+
+        const maxP = Math.max(...projectClicks.map((p) => p.count), 1);
+        document.getElementById("projects-chart").innerHTML =
+          projectClicks.length === 0
+            ? '<span class="dash-empty">no project expansions yet</span>'
+            : projectClicks
+                .map(
+                  (p) => `
+                <div class="dash-hbar-row">
+                  <div class="dash-hbar-label">${p.name}</div>
+                  <div class="dash-hbar-track"><div class="dash-hbar-fill" style="width:${Math.round((p.count / maxP) * 100)}%"></div></div>
+                  <div class="dash-hbar-count">${p.count}</div>
+                </div>`,
+                )
+                .join("");
+
+        const maxR = Math.max(...referrers.map((r) => r.count), 1);
+        document.getElementById("referrers-chart").innerHTML =
+          referrers.length === 0
+            ? '<span class="dash-empty">no referrer data yet</span>'
+            : referrers
+                .map(
+                  (r) => `
+                <div class="dash-hbar-row">
+                  <div class="dash-hbar-label">${r.name}</div>
+                  <div class="dash-hbar-track"><div class="dash-hbar-fill dash-hbar-fill--secondary" style="width:${Math.round((r.count / maxR) * 100)}%"></div></div>
+                  <div class="dash-hbar-count">${r.count}</div>
+                </div>`,
+                )
+                .join("");
+
+        document.getElementById("tz-list").innerHTML =
+          timezones.length === 0
+            ? '<span class="dash-empty">no timezone data yet</span>'
+            : `<div class="dash-tz-list">${timezones
+                .map(
+                  (t) =>
+                    `<div class="dash-tz-item"><span class="dash-tz-name">${t.name}</span><span>${t.count}</span></div>`,
+                )
+                .join("")}</div>`;
+      }
+    </script>
+  </body>
+</html>

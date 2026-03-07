@@ -1,4 +1,4 @@
-// api/analytics-data.js  –  Vercel Serverless Function
+// api/analytics-data.js  –  Vercel Edge Function
 // ============================================================
 // Serves aggregated analytics data to the dashboard.
 // Protected by a simple secret token in the URL:
@@ -27,17 +27,6 @@ async function redis(commands) {
   return res.json();
 }
 
-async function redisSingle(command) {
-  const res = await fetch(
-    `${UPSTASH_URL}/${command.map(encodeURIComponent).join("/")}`,
-    {
-      headers: { Authorization: `Bearer ${UPSTASH_TOKEN}` },
-    },
-  );
-  const data = await res.json();
-  return data.result;
-}
-
 export default async function handler(req) {
   const url = new URL(req.url);
   const token = url.searchParams.get("token");
@@ -60,10 +49,8 @@ export default async function handler(req) {
     ["HGETALL", "visits:total"],
     // Project click leaderboard (all time)
     ["ZREVRANGE", "project_clicks", "0", "-1", "WITHSCORES"],
-    // Top timezones
-    ["ZREVRANGE", "timezones", "0", "19", "WITHSCORES"],
-    // Top referrers
-    ["ZREVRANGE", "referrers", "0", "9", "WITHSCORES"],
+    // Top regions (replaces timezones)
+    ["ZREVRANGE", "regions", "0", "19", "WITHSCORES"],
     // Time on page stats
     ["HGETALL", "timeonpage"],
     // Daily data for each of the 30 days
@@ -80,7 +67,6 @@ export default async function handler(req) {
     });
   }
 
-  // Parse results
   const parseHash = (arr) => {
     if (!arr || !Array.isArray(arr)) return {};
     const obj = {};
@@ -99,10 +85,9 @@ export default async function handler(req) {
 
   const totals = parseHash(results[0]?.result);
   const projectClicks = parseZset(results[1]?.result);
-  const timezones = parseZset(results[2]?.result);
-  const referrers = parseZset(results[3]?.result);
-  const timeonpage = parseHash(results[4]?.result);
-  const dailyRaw = results.slice(5).map((r, i) => ({
+  const regions = parseZset(results[2]?.result);
+  const timeonpage = parseHash(results[3]?.result);
+  const dailyRaw = results.slice(4).map((r, i) => ({
     date: days[i],
     ...parseHash(r?.result),
   }));
@@ -116,8 +101,7 @@ export default async function handler(req) {
     JSON.stringify({
       totals,
       projectClicks,
-      timezones,
-      referrers,
+      regions,
       avgTimeOnPage: avgTime,
       daily: dailyRaw,
     }),

@@ -5,6 +5,98 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Analytics – Amit Weis</title>
     <link rel="stylesheet" href="style.css" />
+    <style>
+      /* ── Scatter / line chart ── */
+      .dash-scatter-wrap {
+        position: relative;
+        width: 100%;
+        overflow: hidden;
+      }
+      .dash-scatter-svg {
+        width: 100%;
+        display: block;
+      }
+      .scatter-axis-label {
+        font-size: 11px;
+        fill: #555;
+        font-family: inherit;
+      }
+      .scatter-grid-line {
+        stroke: rgba(255, 255, 255, 0.06);
+        stroke-width: 1;
+      }
+      .scatter-line {
+        fill: none;
+        stroke-width: 2;
+        stroke-linejoin: round;
+        stroke-linecap: round;
+      }
+      .scatter-line--human {
+        stroke: #4a9eff;
+      }
+      .scatter-line--bot {
+        stroke: #ff5c5c;
+        stroke-dasharray: 5 4;
+        opacity: 0.7;
+      }
+      .scatter-dot {
+        transition: r 0.15s;
+        cursor: default;
+      }
+      .scatter-dot--human {
+        fill: #4a9eff;
+      }
+      .scatter-dot--bot {
+        fill: #ff5c5c;
+      }
+      .scatter-dot:hover {
+        r: 6;
+      }
+
+      /* SVG tooltip */
+      .scatter-tooltip {
+        pointer-events: none;
+        opacity: 0;
+        transition: opacity 0.15s;
+      }
+      .scatter-tooltip rect {
+        fill: #1a1f2e;
+        rx: 4;
+        stroke: rgba(255, 255, 255, 0.1);
+        stroke-width: 1;
+      }
+      .scatter-tooltip text {
+        font-size: 11px;
+        fill: #e0e0e0;
+        font-family: inherit;
+      }
+
+      /* ── Wipe button ── */
+      .dash-wipe-btn {
+        background: transparent;
+        border: 1px solid rgba(255, 92, 92, 0.4);
+        color: #ff5c5c;
+        font-size: 0.75rem;
+        letter-spacing: 0.08em;
+        padding: 0.35rem 0.85rem;
+        border-radius: 4px;
+        cursor: pointer;
+        transition:
+          background 0.2s,
+          border-color 0.2s;
+        margin-top: 2.5rem;
+        display: inline-block;
+      }
+      .dash-wipe-btn:hover {
+        background: rgba(255, 92, 92, 0.12);
+        border-color: #ff5c5c;
+      }
+      .dash-wipe-status {
+        font-size: 0.75rem;
+        margin-left: 0.75rem;
+        opacity: 0.7;
+      }
+    </style>
   </head>
   <body class="main dashboard">
     <!-- Login -->
@@ -27,12 +119,11 @@
         <h1 class="pretitle" style="font-size: 1rem; line-height: 2rem">
           analytics
         </h1>
-        <p class="dash-page-sub">amit weis · human-filtered · upstash redis</p>
 
         <!-- Summary Cards -->
         <div class="dash-grid" id="summary-cards"></div>
 
-        <!-- Daily Chart -->
+        <!-- Scatter + Line Chart -->
         <div class="dash-section">
           <div class="dash-section-title">visits — last 30 days</div>
           <div class="dash-chart-wrap">
@@ -46,7 +137,9 @@
                 bot / scraper
               </div>
             </div>
-            <div class="dash-chart-bars" id="daily-chart"></div>
+            <div class="dash-scatter-wrap">
+              <svg id="scatter-svg" class="dash-scatter-svg"></svg>
+            </div>
           </div>
         </div>
 
@@ -56,26 +149,30 @@
           <div class="portfolio-item" id="projects-chart"></div>
         </div>
 
-        <!-- Referrers -->
+        <!-- Regions (was Timezones) -->
         <div class="dash-section">
-          <div class="dash-section-title">referrers</div>
-          <div class="portfolio-item" id="referrers-chart"></div>
+          <div class="dash-section-title">regions (top 20)</div>
+          <div class="portfolio-item" id="regions-list"></div>
         </div>
 
-        <!-- Timezones -->
-        <div class="dash-section">
-          <div class="dash-section-title">timezones (top 20)</div>
-          <div class="portfolio-item" id="tz-list"></div>
+        <!-- Wipe Data -->
+        <div class="dash-section" style="padding-bottom: 3rem">
+          <button class="dash-wipe-btn" onclick="wipeData()">
+            wipe all data
+          </button>
+          <span class="dash-wipe-status" id="wipe-status"></span>
         </div>
       </div>
     </div>
 
     <script>
-      function loadDashboard() {
-        const secret = document.getElementById("token-input").value.trim();
-        if (!secret) return;
+      let _secret = "";
 
-        fetch(`/api/analytics-data?token=${encodeURIComponent(secret)}`)
+      function loadDashboard() {
+        _secret = document.getElementById("token-input").value.trim();
+        if (!_secret) return;
+
+        fetch(`/api/analytics-data?token=${encodeURIComponent(_secret)}`)
           .then((r) => {
             if (r.status === 401) throw new Error("bad token");
             if (!r.ok) throw new Error("server error");
@@ -96,18 +193,138 @@
           if (e.key === "Enter") loadDashboard();
         });
 
+      // ── Wipe ──────────────────────────────────────────────────────
+      async function wipeData() {
+        if (
+          !confirm("Wipe ALL analytics data from Redis? This cannot be undone.")
+        )
+          return;
+        const statusEl = document.getElementById("wipe-status");
+        statusEl.textContent = "wiping…";
+        try {
+          const res = await fetch(
+            `/api/analytics?wipe=1&token=${encodeURIComponent(_secret)}`,
+            { method: "POST" },
+          );
+          if (res.status === 401) throw new Error("unauthorized");
+          if (!res.ok) throw new Error("server error");
+          statusEl.textContent = "✓ data wiped";
+          setTimeout(() => (statusEl.textContent = ""), 3000);
+        } catch (e) {
+          statusEl.textContent = `✗ ${e.message}`;
+        }
+      }
+
+      // ── Scatter + line chart ──────────────────────────────────────
+      function buildScatterChart(daily) {
+        const svg = document.getElementById("scatter-svg");
+        const W = svg.parentElement.offsetWidth || 800;
+        const H = 220;
+        const PAD = { top: 16, right: 20, bottom: 32, left: 32 };
+        const innerW = W - PAD.left - PAD.right;
+        const innerH = H - PAD.top - PAD.bottom;
+
+        const humanData = daily.map((d) => parseInt(d.human || 0));
+        const botData = daily.map((d) => parseInt(d.bot || 0));
+        const maxVal = Math.max(...humanData, ...botData, 1);
+        const n = daily.length;
+
+        const xScale = (i) => PAD.left + (i / (n - 1)) * innerW;
+        const yScale = (v) => PAD.top + innerH - (v / maxVal) * innerH;
+
+        // Y grid lines
+        const gridCount = 4;
+        let gridHTML = "";
+        for (let g = 0; g <= gridCount; g++) {
+          const yVal = (g / gridCount) * maxVal;
+          const cy = yScale(yVal);
+          gridHTML += `<line class="scatter-grid-line" x1="${PAD.left}" y1="${cy}" x2="${PAD.left + innerW}" y2="${cy}"/>`;
+          gridHTML += `<text class="scatter-axis-label" x="${PAD.left - 6}" y="${cy + 4}" text-anchor="end">${Math.round(yVal)}</text>`;
+        }
+
+        // Paths
+        const makePath = (data) =>
+          data
+            .map(
+              (v, i) =>
+                `${i === 0 ? "M" : "L"}${xScale(i).toFixed(1)},${yScale(v).toFixed(1)}`,
+            )
+            .join(" ");
+
+        // X axis labels — show ~7 evenly spaced dates
+        const labelStep = Math.max(1, Math.floor(n / 7));
+        let xLabels = "";
+        for (let i = 0; i < n; i += labelStep) {
+          const d = daily[i].date.slice(5); // MM-DD
+          xLabels += `<text class="scatter-axis-label" x="${xScale(i).toFixed(1)}" y="${H - 6}" text-anchor="middle">${d}</text>`;
+        }
+        // Always show last label
+        const lastDate = daily[n - 1].date.slice(5);
+        xLabels += `<text class="scatter-axis-label" x="${xScale(n - 1).toFixed(1)}" y="${H - 6}" text-anchor="middle">${lastDate}</text>`;
+
+        // Dots with embedded tooltip data
+        const makeDots = (data, cls, labelPrefix) =>
+          data
+            .map(
+              (v, i) =>
+                `<circle class="scatter-dot ${cls}" cx="${xScale(i).toFixed(1)}" cy="${yScale(v).toFixed(1)}" r="4"
+                  data-label="${daily[i].date}: ${v} ${labelPrefix}"
+                  onmouseenter="showTip(evt, this)" onmouseleave="hideTip()"/>`,
+            )
+            .join("");
+
+        svg.setAttribute("viewBox", `0 0 ${W} ${H}`);
+        svg.setAttribute("height", H);
+
+        svg.innerHTML = `
+          <g class="grid">${gridHTML}</g>
+          <path class="scatter-line scatter-line--human" d="${makePath(humanData)}"/>
+          <path class="scatter-line scatter-line--bot"   d="${makePath(botData)}"/>
+          <g class="dots-bot">  ${makeDots(botData, "scatter-dot--bot", "bot")}</g>
+          <g class="dots-human">${makeDots(humanData, "scatter-dot--human", "human")}</g>
+          ${xLabels}
+          <g id="svgTooltip" class="scatter-tooltip">
+            <rect id="svgTipRect" x="0" y="0" width="120" height="32" rx="4"/>
+            <text id="svgTipText" x="8" y="20"></text>
+          </g>
+        `;
+      }
+
+      function showTip(evt, el) {
+        const svg = document.getElementById("scatter-svg");
+        const tip = document.getElementById("svgTooltip");
+        const rect = document.getElementById("svgTipRect");
+        const textEl = document.getElementById("svgTipText");
+        const label = el.getAttribute("data-label");
+        textEl.textContent = label;
+
+        // Measure text width
+        const approxW = label.length * 7 + 16;
+        rect.setAttribute("width", approxW);
+
+        const svgRect = svg.getBoundingClientRect();
+        const cx = parseFloat(el.getAttribute("cx"));
+        const cy = parseFloat(el.getAttribute("cy"));
+        const vbW = parseFloat(svg.getAttribute("viewBox").split(" ")[2]);
+        const scaleX = vbW / svgRect.width;
+
+        let tx = cx + 8;
+        if (tx + approxW * scaleX > vbW) tx = cx - approxW - 8;
+
+        tip.setAttribute("transform", `translate(${tx}, ${cy - 36})`);
+        tip.style.opacity = "1";
+      }
+
+      function hideTip() {
+        document.getElementById("svgTooltip").style.opacity = "0";
+      }
+
+      // ── Main render ───────────────────────────────────────────────
       function render(data) {
         document.getElementById("login-screen").style.display = "none";
         document.getElementById("dashboard").style.display = "block";
 
-        const {
-          totals,
-          projectClicks,
-          timezones,
-          referrers,
-          avgTimeOnPage,
-          daily,
-        } = data;
+        const { totals, projectClicks, regions, avgTimeOnPage, daily } = data;
 
         const human = parseInt(totals.human || 0);
         const bot = parseInt(totals.bot || 0);
@@ -139,9 +356,9 @@
             sub: "all time",
           },
           {
-            label: "avg time on page",
+            label: "avg active time",
             value: `${avgTimeOnPage}s`,
-            sub: "across all sessions",
+            sub: "active tab only",
           },
         ];
 
@@ -156,32 +373,8 @@
           )
           .join("");
 
-        const maxVisits = Math.max(
-          ...daily.map((d) => parseInt(d.human || 0) + parseInt(d.bot || 0)),
-          1,
-        );
-
-        document.getElementById("daily-chart").innerHTML = daily
-          .map((d) => {
-            const h = parseInt(d.human || 0);
-            const b = parseInt(d.bot || 0);
-            const hPx = Math.max(
-              Math.round((h / maxVisits) * 90),
-              h > 0 ? 2 : 0,
-            );
-            const bPx = Math.max(
-              Math.round((b / maxVisits) * 90),
-              b > 0 ? 2 : 0,
-            );
-            const label = d.date.slice(5);
-            return `
-              <div class="dash-bar-group" title="${d.date}: ${h} human, ${b} bot">
-                <div class="dash-bar dash-bar--human" style="height:${hPx}px"></div>
-                <div class="dash-bar dash-bar--bot"   style="height:${bPx}px"></div>
-                <div class="dash-bar-label">${label}</div>
-              </div>`;
-          })
-          .join("");
+        // Chart (defer one frame so width is known)
+        requestAnimationFrame(() => buildScatterChart(daily));
 
         const maxP = Math.max(...projectClicks.map((p) => p.count), 1);
         document.getElementById("projects-chart").innerHTML =
@@ -198,30 +391,32 @@
                 )
                 .join("");
 
-        const maxR = Math.max(...referrers.map((r) => r.count), 1);
-        document.getElementById("referrers-chart").innerHTML =
-          referrers.length === 0
-            ? '<span class="dash-empty">no referrer data yet</span>'
-            : referrers
+        document.getElementById("regions-list").innerHTML =
+          regions.length === 0
+            ? '<span class="dash-empty">no region data yet</span>'
+            : `<div class="dash-tz-list">${regions
                 .map(
-                  (r) => `
-                <div class="dash-hbar-row">
-                  <div class="dash-hbar-label">${r.name}</div>
-                  <div class="dash-hbar-track"><div class="dash-hbar-fill dash-hbar-fill--secondary" style="width:${Math.round((r.count / maxR) * 100)}%"></div></div>
-                  <div class="dash-hbar-count">${r.count}</div>
-                </div>`,
-                )
-                .join("");
-
-        document.getElementById("tz-list").innerHTML =
-          timezones.length === 0
-            ? '<span class="dash-empty">no timezone data yet</span>'
-            : `<div class="dash-tz-list">${timezones
-                .map(
-                  (t) =>
-                    `<div class="dash-tz-item"><span class="dash-tz-name">${t.name}</span><span>${t.count}</span></div>`,
+                  (r) =>
+                    `<div class="dash-tz-item"><span class="dash-tz-name">${r.name}</span><span>${r.count}</span></div>`,
                 )
                 .join("")}</div>`;
+      }
+
+      // Redraw chart on resize
+      window.addEventListener("resize", () => {
+        const svg = document.getElementById("scatter-svg");
+        if (svg && svg.innerHTML) {
+          // Re-render will be called next time data loads; for live resize:
+          const daily = window._cachedDaily;
+          if (daily) buildScatterChart(daily);
+        }
+      });
+
+      // Cache daily data for resize
+      const _origRender = render;
+      function render(data) {
+        window._cachedDaily = data.daily;
+        _origRender(data);
       }
     </script>
   </body>

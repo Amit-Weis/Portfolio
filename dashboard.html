@@ -183,7 +183,8 @@
             document.getElementById("login-error").textContent =
               e.message === "bad token"
                 ? "wrong password"
-                : "error loading data";
+                : `error: ${e.message}`;
+            console.error("Dashboard load error:", e);
           });
       }
 
@@ -325,6 +326,7 @@
         document.getElementById("dashboard").style.display = "block";
 
         const { totals, projectClicks, regions, avgTimeOnPage, daily } = data;
+        window._cachedDaily = daily;
 
         const human = parseInt(totals.human || 0);
         const bot = parseInt(totals.bot || 0);
@@ -404,20 +406,8 @@
 
       // Redraw chart on resize
       window.addEventListener("resize", () => {
-        const svg = document.getElementById("scatter-svg");
-        if (svg && svg.innerHTML) {
-          // Re-render will be called next time data loads; for live resize:
-          const daily = window._cachedDaily;
-          if (daily) buildScatterChart(daily);
-        }
+        if (window._cachedDaily) buildScatterChart(window._cachedDaily);
       });
-
-      // Cache daily data for resize
-      const _origRender = render;
-      function render(data) {
-        window._cachedDaily = data.daily;
-        _origRender(data);
-      }
     </script>
   </body>
 </html>

@@ -3,6 +3,6 @@ const resumeForm = document.getElementById("resume-form");
 if (resumeForm) {
   resumeForm.addEventListener("submit", function (e) {
     e.preventDefault();
-    window.open("Amit weis - resume - vN6.pdf", "_blank");
+    window.open("Amit weis - resume - vN7.pdf", "_blank");
   });
 }

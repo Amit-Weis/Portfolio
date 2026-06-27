@@ -1,11 +1,3 @@
-// api/analytics-data.js  –  Vercel Edge Function
-// ============================================================
-// Serves aggregated analytics data to the dashboard.
-// Protected by a simple secret token in the URL:
-//   /api/analytics-data?token=YOUR_DASHBOARD_SECRET
-//
-// Add DASHBOARD_SECRET to your Vercel environment variables.
-// ============================================================
 
 export const config = {
   runtime: "edge",

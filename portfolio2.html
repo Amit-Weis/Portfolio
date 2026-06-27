@@ -1,21 +1,23 @@
 <!doctype html>
-
 <html lang="en">
   <head>
-    <meta charset="utf-8" />
-    <link href="images/favicon.ico" rel="icon" type="image/x-icon" />
-    <meta content="width=device-width, initial-scale=1" name="viewport" />
+    <meta charset="UTF-8" />
+
+    <link rel="icon" type="image/x-icon" href="images/favicon.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Portfolio – Amit Weis</title>
-    <link href="style.css" rel="stylesheet" />
+    <link rel="stylesheet" href="style.css" />
   </head>
+
   <body class="main portfolio">
     <!-- Return -->
     <div style="padding: 1.5rem">
       <button class="resume-button" onclick="window.location.href = '/'">
-        <img alt="return" class="resume-image" src="images/arrow.svg" />
+        <img src="images/arrow.svg" alt="return" class="resume-image" />
         <span class="resume-button-text">Return</span>
       </button>
     </div>
+
     <script>
       window.va =
         window.va ||
@@ -23,33 +25,35 @@
           (window.vaq = window.vaq || []).push(arguments);
         };
     </script>
-    <script defer="" src="/_vercel/insights/script.js"></script>
+    <script defer src="/_vercel/insights/script.js"></script>
+
     <div class="main-hero">
       <!-- ================= PROJECTS ================= -->
       <section class="portfolio-section">
         <div class="portfolio-section-header">
           <img
+            src="images/proj.svg"
             alt="proj"
             class="main-hero"
-            src="images/proj.svg"
-            style="width: 30%; height: auto"
+            style="width: 50%; height: auto"
           />
         </div>
         <div class="bar"></div>
+
         <!-- ===== Cards (click a card to open the full project) ===== -->
         <div class="proj-feature">
           <!-- Featured -->
           <article
-            aria-label="Open Bttrpie"
             class="proj-card proj-card--feature"
             data-target="proj-bttrpie"
-            role="button"
             tabindex="0"
+            role="button"
+            aria-label="Open Bttrpie"
           >
             <img
-              alt="Bttrpie"
               class="proj-card-media"
               src="images/bttrpie.jpg"
+              alt="Bttrpie"
             />
             <div class="proj-card-play"></div>
             <div class="proj-card-scrim proj-card-scrim--feature"></div>
@@ -60,225 +64,124 @@
                 An autonomous mini pool table that collects and sorts balls
                 using a 3-axis gantry and a custom grabber claw.
               </p>
-              <span class="proj-card-more"
-                >See more <span aria-hidden="true">→</span></span
-              >
+              <span class="proj-card-more">See more <span aria-hidden="true">→</span></span>
             </div>
           </article>
         </div>
-        <div class="proj-carousel-wrap">
-          <button
-            aria-label="Previous project"
-            class="proj-carousel-arrow proj-carousel-arrow--prev"
-            id="projPrev"
-            type="button"
-          >
-            ‹
-          </button>
-          <div class="proj-carousel" id="projCarousel">
-            <!-- Warpz -->
-            <article
-              aria-label="Open Warpz"
-              class="proj-card"
-              data-target="proj-warpz"
-              role="button"
-              tabindex="0"
-            >
-              <img alt="Warpz" class="proj-card-media" src="images/warpz.jpg" />
-              <div class="proj-card-scrim"></div>
-              <div class="proj-card-body">
-                <span class="proj-card-chip">Photo</span>
-                <h3 class="proj-card-title">Warpz</h3>
-                <p class="proj-card-blurb">Robotic photogrammetry 3D scanner</p>
-                <span class="proj-card-more"
-                  >See more <span aria-hidden="true">→</span></span
-                >
-              </div>
-            </article>
-            <!-- VtaR -->
-            <article
-              aria-label="Open VtaR"
-              class="proj-card"
-              data-target="proj-vtar"
-              role="button"
-              tabindex="0"
-            >
-              <video
-                class="proj-card-media"
-                muted=""
-                playsinline=""
-                preload="metadata"
-              >
-                <source src="images/vack.mp4" type="video/mp4" />
-              </video>
-              <div class="proj-card-play"></div>
-              <div class="proj-card-scrim"></div>
-              <div class="proj-card-body">
-                <span class="proj-card-chip">Video</span>
-                <h3 class="proj-card-title">VtaR</h3>
-                <p class="proj-card-blurb">VR air guitar in Unity</p>
-                <span class="proj-card-more"
-                  >See more <span aria-hidden="true">→</span></span
-                >
-              </div>
-            </article>
-            <!-- ARmatica -->
-            <article
-              aria-label="Open ARmatica"
-              class="proj-card"
-              data-target="proj-armatica"
-              role="button"
-              tabindex="0"
-            >
-              <video
-                class="proj-card-media"
-                muted=""
-                playsinline=""
-                preload="metadata"
-              >
-                <source src="images/armatica.mov" type="video/mp4" />
-              </video>
-              <div class="proj-card-play"></div>
-              <div class="proj-card-scrim"></div>
-              <div class="proj-card-body">
-                <span class="proj-card-chip">Video</span>
-                <h3 class="proj-card-title">ARmatica</h3>
-                <p class="proj-card-blurb">AR overlay for circuit assembly</p>
-                <span class="proj-card-more"
-                  >See more <span aria-hidden="true">→</span></span
-                >
-              </div>
-            </article>
-            <!-- WWLetters -->
-            <article
-              aria-label="Open WWLetters"
-              class="proj-card proj-card--extra"
-              data-target="proj-wwletters"
-              role="button"
-              tabindex="0"
-            >
-              <video
-                class="proj-card-media"
-                muted=""
-                playsinline=""
-                preload="metadata"
-              >
-                <source src="images/parser.mp4" type="video/mp4" />
-              </video>
-              <div class="proj-card-play"></div>
-              <div class="proj-card-scrim"></div>
-              <div class="proj-card-body">
-                <span class="proj-card-chip">Video</span>
-                <h3 class="proj-card-title">WWLetters</h3>
-                <p class="proj-card-blurb">Cleans up WaterlooWorks postings</p>
-                <span class="proj-card-more"
-                  >See more <span aria-hidden="true">→</span></span
-                >
-              </div>
-            </article>
-            <!-- Omnivim -->
-            <article
-              aria-label="Open Omnivim"
-              class="proj-card proj-card--extra"
-              data-target="proj-omnivim"
-              role="button"
-              tabindex="0"
-            >
-              <video
-                class="proj-card-media"
-                muted=""
-                playsinline=""
-                preload="metadata"
-              >
-                <source src="images/omnivim.mp4" type="video/mp4" />
-              </video>
-              <div class="proj-card-play"></div>
-              <div class="proj-card-scrim"></div>
-              <div class="proj-card-body">
-                <span class="proj-card-chip">Video</span>
-                <h3 class="proj-card-title">Omnivim</h3>
-                <p class="proj-card-blurb">System-wide Vim keyboard control</p>
-                <span class="proj-card-more"
-                  >See more <span aria-hidden="true">→</span></span
-                >
-              </div>
-            </article>
-            <!-- 3D-snake -->
-            <article
-              aria-label="Open 3D-snake"
-              class="proj-card proj-card--extra"
-              data-target="proj-3dsnake"
-              role="button"
-              tabindex="0"
-            >
-              <video
-                class="proj-card-media"
-                muted=""
-                playsinline=""
-                preload="metadata"
-              >
-                <source src="images/3d_snake.mov" type="video/mp4" />
-              </video>
-              <div class="proj-card-play"></div>
-              <div class="proj-card-scrim"></div>
-              <div class="proj-card-body">
-                <span class="proj-card-chip">Video</span>
-                <h3 class="proj-card-title">3D-snake</h3>
-                <p class="proj-card-blurb">Snake on a 5×5×5 LED cube</p>
-                <span class="proj-card-more"
-                  >See more <span aria-hidden="true">→</span></span
-                >
-              </div>
-            </article>
-          </div>
-          <button
-            aria-label="Next project"
-            class="proj-carousel-arrow proj-carousel-arrow--next"
-            id="projNext"
-            type="button"
-          >
-            ›
-          </button>
+
+        <div class="proj-carousel" id="projCarousel">
+          <!-- WWLetters -->
+          <article class="proj-card" data-target="proj-wwletters" tabindex="0" role="button" aria-label="Open WWLetters">
+            <video class="proj-card-media" muted playsinline preload="metadata">
+              <source src="images/parser.mp4" type="video/mp4" />
+            </video>
+            <div class="proj-card-play"></div>
+            <div class="proj-card-scrim"></div>
+            <div class="proj-card-body">
+              <span class="proj-card-chip">Video</span>
+              <h3 class="proj-card-title">WWLetters</h3>
+              <span class="proj-card-more">See more <span aria-hidden="true">→</span></span>
+            </div>
+          </article>
+
+          <!-- VtaR -->
+          <article class="proj-card" data-target="proj-vtar" tabindex="0" role="button" aria-label="Open VtaR">
+            <video class="proj-card-media" muted playsinline preload="metadata">
+              <source src="images/vack.mp4" type="video/mp4" />
+            </video>
+            <div class="proj-card-play"></div>
+            <div class="proj-card-scrim"></div>
+            <div class="proj-card-body">
+              <span class="proj-card-chip">Video</span>
+              <h3 class="proj-card-title">VtaR</h3>
+              <span class="proj-card-more">See more <span aria-hidden="true">→</span></span>
+            </div>
+          </article>
+
+          <!-- Warpz -->
+          <article class="proj-card" data-target="proj-warpz" tabindex="0" role="button" aria-label="Open Warpz">
+            <img class="proj-card-media" src="images/warpz.jpg" alt="Warpz" />
+            <div class="proj-card-scrim"></div>
+            <div class="proj-card-body">
+              <span class="proj-card-chip">Photo</span>
+              <h3 class="proj-card-title">Warpz</h3>
+              <span class="proj-card-more">See more <span aria-hidden="true">→</span></span>
+            </div>
+          </article>
+
+          <!-- ARmatica -->
+          <article class="proj-card proj-card--extra" data-target="proj-armatica" tabindex="0" role="button" aria-label="Open ARmatica">
+            <video class="proj-card-media" muted playsinline preload="metadata">
+              <source src="images/armatica.mov" type="video/mp4" />
+            </video>
+            <div class="proj-card-play"></div>
+            <div class="proj-card-scrim"></div>
+            <div class="proj-card-body">
+              <span class="proj-card-chip">Video</span>
+              <h3 class="proj-card-title">ARmatica</h3>
+              <span class="proj-card-more">See more <span aria-hidden="true">→</span></span>
+            </div>
+          </article>
+
+          <!-- Omnivim -->
+          <article class="proj-card proj-card--extra" data-target="proj-omnivim" tabindex="0" role="button" aria-label="Open Omnivim">
+            <video class="proj-card-media" muted playsinline preload="metadata">
+              <source src="images/omnivim.mp4" type="video/mp4" />
+            </video>
+            <div class="proj-card-play"></div>
+            <div class="proj-card-scrim"></div>
+            <div class="proj-card-body">
+              <span class="proj-card-chip">Video</span>
+              <h3 class="proj-card-title">Omnivim</h3>
+              <span class="proj-card-more">See more <span aria-hidden="true">→</span></span>
+            </div>
+          </article>
+
+          <!-- 3D-snake -->
+          <article class="proj-card proj-card--extra" data-target="proj-3dsnake" tabindex="0" role="button" aria-label="Open 3D-snake">
+            <video class="proj-card-media" muted playsinline preload="metadata">
+              <source src="images/3d_snake.mov" type="video/mp4" />
+            </video>
+            <div class="proj-card-play"></div>
+            <div class="proj-card-scrim"></div>
+            <div class="proj-card-body">
+              <span class="proj-card-chip">Video</span>
+              <h3 class="proj-card-title">3D-snake</h3>
+              <span class="proj-card-more">See more <span aria-hidden="true">→</span></span>
+            </div>
+          </article>
         </div>
-        <div
-          aria-label="Project slides"
-          class="proj-dots"
-          id="projDots"
-          role="tablist"
-        ></div>
+
+        <div class="proj-dots" id="projDots" role="tablist" aria-label="Project slides"></div>
+
         <div class="proj-seemore-wrap">
           <button class="proj-seemore" id="projSeeMore" type="button">
             <span class="proj-seemore-label">See more</span>
-            <span aria-hidden="true" class="proj-seemore-arrow">→</span>
+            <span class="proj-seemore-arrow" aria-hidden="true">→</span>
           </button>
         </div>
       </section>
     </div>
+
     <!-- ===== Modal ===== -->
-    <div aria-hidden="true" class="proj-modal" id="projModal">
-      <div aria-modal="true" class="proj-modal-card" role="dialog">
-        <button aria-label="Close" class="proj-modal-close">×</button>
+    <div class="proj-modal" id="projModal" aria-hidden="true">
+      <div class="proj-modal-card" role="dialog" aria-modal="true">
+        <button class="proj-modal-close" aria-label="Close">×</button>
         <div class="proj-modal-body"></div>
       </div>
     </div>
+
     <!-- ===== Hidden project details (cloned into the modal on click) ===== -->
-    <div class="proj-details" hidden="">
+    <div class="proj-details" hidden>
       <div id="proj-bttrpie">
         <h2 class="proj-modal-title">Bttrpie</h2>
         <div class="portfolio-video">
           <iframe
-            allow="
-              accelerometer;
-              autoplay;
-              clipboard-write;
-              encrypted-media;
-              gyroscope;
-              picture-in-picture;
-            "
-            allowfullscreen=""
-            frameborder="0"
-            src="https://www.youtube.com/embed/3O0Q1q2LcDg?autoplay=1&amp;mute=1"
+            src="https://www.youtube.com/embed/3O0Q1q2LcDg?autoplay=1"
             title="Bttrpie Autonomous Pool Table"
+            frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture;"
+            allowfullscreen
           ></iframe>
         </div>
         <p class="portfolio-text">
@@ -325,10 +228,11 @@
           triangle is reset, and the table is ready for the next round of play.
         </p>
       </div>
+
       <div id="proj-wwletters">
         <h2 class="proj-modal-title">WWLetters</h2>
         <div class="portfolio-video">
-          <video autoplay="" controls="" loop="" muted="" playsinline="">
+          <video controls autoplay playsinline>
             <source src="images/parser.mp4" type="video/mp4" />
             Your browser does not support the video tag.
           </video>
@@ -345,10 +249,11 @@
           WaterlooWorks' fixed layout. See the demo above.
         </p>
       </div>
+
       <div id="proj-vtar">
         <h2 class="proj-modal-title">VtaR</h2>
         <div class="portfolio-video">
-          <video autoplay="" controls="" loop="" muted="" playsinline="">
+          <video controls autoplay playsinline>
             <source src="images/vack.mp4" type="video/mp4" />
             Your browser does not support the video tag.
           </video>
@@ -356,7 +261,7 @@
         <p class="portfolio-text">
           VtaR is a VR guitar (hence VtaR) experience built for the Oculus Quest
           3 that lets you shred like my good friend Ezra Ornstein without the
-          years of practice. See above a video of this little project, and turn
+          years of practice. See the video above for this little project, and turn
           your audio on!
         </p>
         <p class="portfolio-text">
@@ -367,50 +272,21 @@
         </p>
         <p class="portfolio-text" style="font-size: 0.85em; opacity: 0.7">
           <strong>Asset Credits:</strong>
-          <a
-            href="https://sketchfab.com/3d-models/cartoon-guitar-0c8c8270cc584e94bd1fd04370bcb4dd"
-            rel="noopener noreferrer"
-            target="_blank"
-            >Cartoon Guitar</a
-          >
+          <a href="https://sketchfab.com/3d-models/cartoon-guitar-0c8c8270cc584e94bd1fd04370bcb4dd" target="_blank" rel="noopener noreferrer">Cartoon Guitar</a>
           by
-          <a
-            href="https://sketchfab.com/temirgalin"
-            rel="noopener noreferrer"
-            target="_blank"
-            >Denis Temirgalin</a
-          >, licensed under
-          <a
-            href="http://creativecommons.org/licenses/by/4.0/"
-            rel="noopener noreferrer"
-            target="_blank"
-            >CC Attribution</a
-          >.
-          <a
-            href="https://sketchfab.com/3d-models/stylized-mangrove-greenhouse-4ad533f838f44fa583683ab7939c6aa1"
-            rel="noopener noreferrer"
-            target="_blank"
-            >Stylized Mangrove Greenhouse</a
-          >
+          <a href="https://sketchfab.com/temirgalin" target="_blank" rel="noopener noreferrer">Denis Temirgalin</a>, licensed under
+          <a href="http://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener noreferrer">CC Attribution</a>.
+          <a href="https://sketchfab.com/3d-models/stylized-mangrove-greenhouse-4ad533f838f44fa583683ab7939c6aa1" target="_blank" rel="noopener noreferrer">Stylized Mangrove Greenhouse</a>
           by
-          <a
-            href="https://sketchfab.com/borsh_and"
-            rel="noopener noreferrer"
-            target="_blank"
-            >Bársh</a
-          >, licensed under
-          <a
-            href="http://creativecommons.org/licenses/by/4.0/"
-            rel="noopener noreferrer"
-            target="_blank"
-            >CC Attribution</a
-          >.
+          <a href="https://sketchfab.com/borsh_and" target="_blank" rel="noopener noreferrer">Bársh</a>, licensed under
+          <a href="http://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener noreferrer">CC Attribution</a>.
         </p>
       </div>
+
       <div id="proj-warpz">
         <h2 class="proj-modal-title">Warpz</h2>
         <div class="portfolio-image">
-          <img alt="Project preview" src="images/warpz.jpg" />
+          <img src="images/warpz.jpg" alt="Project preview" />
         </div>
         <p class="portfolio-text">
           Warpz is an automated 3D model generation system that transforms a
@@ -450,21 +326,22 @@
           capture progress and download completed models.
         </p>
       </div>
+
       <div id="proj-armatica">
         <h2 class="proj-modal-title">ARmatica</h2>
         <div class="portfolio-video">
-          <video autoplay="" controls="" loop="" muted="" playsinline="">
+          <video controls autoplay playsinline>
             <source src="images/armatica.mov" type="video/mp4" />
             Your browser does not support the video tag.
           </video>
         </div>
         <p class="portfolio-text">
-          ARmatica is an augmented reality app built in Unity that assists
-          during circuit assembly by overlaying a 3D model of a circuit
-          schematic directly onto a physical breadboard. This project was built
-          for Jamhacks, a local 36 hour hackathon, and won third place. See the
-          video attached above for a video of the prototype working. You can
-          also explore the rather delirious github page, where you can track the
+          ARmatica is an augmented reality app built in Unity that assists during
+          circuit assembly by overlaying a 3D model of a circuit schematic
+          directly onto a physical breadboard. This project was built for
+          Jamhacks, a local 36 hour hackathon, and won third place. See the video
+          attached above for a video of the prototype working. You can also
+          explore the rather delirious github page, where you can track the
           groups collective sanity levels via the names of the commits.
         </p>
         <p class="portfolio-text">
@@ -481,19 +358,20 @@
         <p class="portfolio-text">
           Due to the nature of making a hackathon project, ARmatica's user
           workflow is quite convoluted. The workflow begins with the user making
-          a KiCAD file, and exporting it as a STEP file. The user then uploads
-          it to a website, which then uses a flask backend to process it through
+          a KiCAD file, and exporting it as a STEP file. The user then uploads it
+          to a website, which then uses a flask backend to process it through
           FreeCAD to generate a glTF file. It then continues to refine the model
           and add additional information using Blender's CLI tool, and finally
           exports it as an FBX file which can be used in Unity. This multi-stage
-          conversion is entirely necessary, and we had to fight several
-          different softwares into agreeing to be used like this.
+          conversion is entirely necessary, and we had to fight several different
+          softwares into agreeing to be used like this.
         </p>
       </div>
+
       <div id="proj-omnivim">
         <h2 class="proj-modal-title">Omnivim</h2>
         <div class="portfolio-video">
-          <video autoplay="" controls="" loop="" muted="" playsinline="">
+          <video controls autoplay playsinline>
             <source src="images/omnivim.mp4" type="video/mp4" />
             Your browser does not support the video tag.
           </video>
@@ -502,8 +380,8 @@
           Omnivim was a project designed to extend the hyper-efficient Vim text
           editing motions to the entire computer, eliminating the need for a
           mouse. It achieves this using several Python libraries and keylogging,
-          emulating Normal, Insert, and Visual modes system-wide. Additionally,
-          a "Mouse" mode allows access to functionality that is typically
+          emulating Normal, Insert, and Visual modes system-wide. Additionally, a
+          "Mouse" mode allows access to functionality that is typically
           mouse-exclusive, by controlling the mouse via more keyboard controls.
         </p>
         <p class="portfolio-text">
@@ -514,10 +392,11 @@
           the software works.
         </p>
       </div>
+
       <div id="proj-3dsnake">
         <h2 class="proj-modal-title">3D-snake</h2>
         <div class="portfolio-video">
-          <video autoplay="" controls="" loop="" muted="" playsinline="">
+          <video controls autoplay playsinline>
             <source src="images/3d_snake.mov" type="video/mp4" />
             Your browser does not support the video tag.
           </video>
@@ -528,28 +407,26 @@
           project presents several unique engineering challenges: creating
           intuitive six-degree-of-freedom control in three-dimensional space,
           managing the 125 individual LEDs required for the matrix display, and
-          operating within the memory constraints of embedded hardware (less
-          then 1kb of ram!). A video demonstration of the project is available
-          above.
+          operating within the memory constraints of embedded hardware (less then
+          1kb of ram!). A video demonstration of the project is available above.
         </p>
         <p class="portfolio-text">
           The control scheme uses a WASD+EQ input mapping, where WASD handles
           horizontal plane movement while E and Q enable vertical navigation
-          through the cube's layers. Player inputs are transmitted to the
-          Arduino via UDP packets, ensuring low-latency communication between
-          the control interface and the physical display. To address the Arduino
-          Mega's limited 4KB RAM, game logic and state management are
-          distributed across multiple microcontrollers, with one Arduino
-          dedicated to LED matrix control while another handles gameplay
-          processing.
+          through the cube's layers. Player inputs are transmitted to the Arduino
+          via UDP packets, ensuring low-latency communication between the control
+          interface and the physical display. To address the Arduino Mega's
+          limited 4KB RAM, game logic and state management are distributed across
+          multiple microcontrollers, with one Arduino dedicated to LED matrix
+          control while another handles gameplay processing.
         </p>
         <p class="portfolio-text">
           The LED matrix employs a multiplexed coordinate system that
           significantly reduces wiring complexity. Twenty-five vertical cathode
-          lines are soldered together, passing through all five horizontal
-          layers of the cube. Each of the five 5×5 planes has its own common
-          anode connection. To illuminate a specific LED, the system activates
-          one vertical line and one horizontal plane simultaneously, which
+          lines are soldered together, passing through all five horizontal layers
+          of the cube. Each of the five 5×5 planes has its own common anode
+          connection. To illuminate a specific LED, the system activates one
+          vertical line and one horizontal plane simultaneously, which
           effectively creates a 3D coordinate system where any position can be
           addressed using just 30 control pins (25 columns + 5 rows) rather than
           the 125 individual connections that would otherwise be required.
@@ -557,13 +434,14 @@
         <p class="portfolio-text">
           The Arduino rapidly cycles through each plane in sequence, activating
           only the LEDs needed for that layer before moving to the next. This
-          technique leverages the human eye's persistence of vision to create
-          the illusion of a fully lit three-dimensional display, but in reality,
-          if you slow down the footage (or if the Arduino lags) you can see that
+          technique leverages the human eye's persistence of vision to create the
+          illusion of a fully lit three-dimensional display, but in reality, if
+          you slow down the footage (or if the Arduino lags) you can see that
           only one LED is on at a time.
         </p>
       </div>
     </div>
+
     <script>
       (function () {
         var carousel = document.getElementById("projCarousel");
@@ -580,7 +458,7 @@
             carousel.querySelectorAll(".proj-card"),
             function (c) {
               return c.offsetParent !== null;
-            },
+            }
           );
         }
 
@@ -638,31 +516,6 @@
           });
         }
 
-        var prevBtn = document.getElementById("projPrev");
-        var nextBtn = document.getElementById("projNext");
-
-        function cardStep() {
-          var cards = visibleCards();
-          if (!cards.length) return 0;
-          var gap = parseFloat(getComputedStyle(carousel).columnGap) || 0;
-          return cards[0].offsetWidth + gap;
-        }
-
-        function scrollByDirection(dir) {
-          carousel.scrollBy({ left: dir * cardStep(), behavior: "smooth" });
-        }
-
-        if (prevBtn) {
-          prevBtn.addEventListener("click", function () {
-            scrollByDirection(-1);
-          });
-        }
-        if (nextBtn) {
-          nextBtn.addEventListener("click", function () {
-            scrollByDirection(1);
-          });
-        }
-
         var resizeTimer;
         window.addEventListener("resize", function () {
           clearTimeout(resizeTimer);
@@ -676,6 +529,7 @@
         updateActiveDot();
       })();
     </script>
+
     <script src="portfolio.js"></script>
     <script src="/analytics.js"></script>
   </body>

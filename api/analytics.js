@@ -1,13 +1,4 @@
-// api/analytics.js  –  Vercel Edge Function (proxy + wipe)
-// ============================================================
-// POST /api/analytics          → track an event
-// POST /api/analytics?wipe=1   → wipe all Redis data (requires token)
-//
-// Env vars:
-//   UPSTASH_REDIS_REST_URL
-//   UPSTASH_REDIS_REST_TOKEN
-//   DASHBOARD_SECRET  (used to authorise wipe)
-// ============================================================
+
 
 export const config = {
   runtime: "edge",

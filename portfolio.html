@@ -716,25 +716,5 @@
       })();
     </script>
     <script src="portfolio.js"></script>
-    <script>
-      // Force each card <video> to render a still preview frame.
-      // The #t=0.1 media fragment handles most browsers; this covers the rest
-      // (notably Safari/Firefox) by explicitly seeking once metadata loads.
-      (function () {
-        var vids = document.querySelectorAll("video.proj-card-media");
-        Array.prototype.forEach.call(vids, function (v) {
-          var paintFrame = function () {
-            try {
-              if (v.currentTime < 0.1) v.currentTime = 0.1;
-            } catch (e) {}
-          };
-          if (v.readyState >= 1) {
-            paintFrame();
-          } else {
-            v.addEventListener("loadedmetadata", paintFrame, { once: true });
-          }
-        });
-      })();
-    </script>
   </body>
 </html>

@@ -7,11 +7,27 @@
     <meta content="width=device-width, initial-scale=1" name="viewport" />
     <title>Portfolio – Amit Weis</title>
     <link href="style.css" rel="stylesheet" />
+    <style>
+      /* Ensure the hidden modal cannot cover the page and swallow clicks
+         (e.g. on the Return button). Removed from hit-testing while hidden. */
+      .proj-modal[aria-hidden="true"] {
+        display: none !important;
+      }
+      /* Keep the Return button above any stray overlays. */
+      .portfolio-return-wrap {
+        position: relative;
+        z-index: 1000;
+      }
+    </style>
   </head>
   <body class="main portfolio">
     <!-- Return -->
-    <div style="padding: 1.5rem">
-      <button class="resume-button" onclick="window.location.href = '/'">
+    <div class="portfolio-return-wrap" style="padding: 1.5rem">
+      <button
+        class="resume-button"
+        type="button"
+        onclick="window.location.href = '/'"
+      >
         <img alt="return" class="resume-image" src="images/arrow.svg" />
         <span class="resume-button-text">Return</span>
       </button>
@@ -109,7 +125,7 @@
                 playsinline=""
                 preload="metadata"
               >
-                <source src="images/vack.mp4" type="video/mp4" />
+                <source src="images/vack.mp4#t=0.1" type="video/mp4" />
               </video>
               <div class="proj-card-play"></div>
               <div class="proj-card-scrim"></div>
@@ -136,7 +152,7 @@
                 playsinline=""
                 preload="metadata"
               >
-                <source src="images/armatica.mov" type="video/mp4" />
+                <source src="images/armatica.mov#t=0.1" type="video/mp4" />
               </video>
               <div class="proj-card-play"></div>
               <div class="proj-card-scrim"></div>
@@ -163,7 +179,7 @@
                 playsinline=""
                 preload="metadata"
               >
-                <source src="images/parser.mp4" type="video/mp4" />
+                <source src="images/parser.mp4#t=0.1" type="video/mp4" />
               </video>
               <div class="proj-card-play"></div>
               <div class="proj-card-scrim"></div>
@@ -190,7 +206,7 @@
                 playsinline=""
                 preload="metadata"
               >
-                <source src="images/omnivim.mp4" type="video/mp4" />
+                <source src="images/omnivim.mp4#t=0.1" type="video/mp4" />
               </video>
               <div class="proj-card-play"></div>
               <div class="proj-card-scrim"></div>
@@ -217,7 +233,7 @@
                 playsinline=""
                 preload="metadata"
               >
-                <source src="images/3d_snake.mov" type="video/mp4" />
+                <source src="images/3d_snake.mov#t=0.1" type="video/mp4" />
               </video>
               <div class="proj-card-play"></div>
               <div class="proj-card-scrim"></div>
@@ -677,6 +693,26 @@
       })();
     </script>
     <script src="portfolio.js"></script>
+    <script>
+      // Force each card <video> to render a still preview frame.
+      // The #t=0.1 media fragment handles most browsers; this covers the rest
+      // (notably Safari/Firefox) by explicitly seeking once metadata loads.
+      (function () {
+        var vids = document.querySelectorAll("video.proj-card-media");
+        Array.prototype.forEach.call(vids, function (v) {
+          var paintFrame = function () {
+            try {
+              if (v.currentTime < 0.1) v.currentTime = 0.1;
+            } catch (e) {}
+          };
+          if (v.readyState >= 1) {
+            paintFrame();
+          } else {
+            v.addEventListener("loadedmetadata", paintFrame, { once: true });
+          }
+        });
+      })();
+    </script>
     <script src="/analytics.js"></script>
   </body>
 </html>

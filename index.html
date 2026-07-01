@@ -1,67 +1,57 @@
-<doctype html>
-  <html lang="en">
-    <!-- a -->
-    <head>
-      <meta charset="UTF-8" />
-      <link rel="icon" type="image/x-icon" href="images/favicon.ico" />
-      <meta name="viewport" content="width=device-width, initial-scale=1" />
-      <title>Amit Weis</title>
-      <link rel="stylesheet" href="style.css" />
-      <link rel="prefetch" href="/portfolio.html" />
-    </head>
-    <body class="main">
-      <div class="main">
-        <div class="main-hero">
-          <h3 class="pretitle">Hi, my name is</h3>
-          <div>
-            <img
-              src="images/amit-weis.svg"
-              alt="Amit Weis"
-              class="hero-image"
-            />
-          </div>
-          <h2 class="subtitle">and I build things.</h2>
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/x-icon" href="/images/favicon.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Amit Weis</title>
+    <link rel="stylesheet" href="/style.css" />
+    <link rel="prefetch" href="/portfolio" />
+  </head>
+  <body class="main">
+    <div class="main">
+      <div class="main-hero">
+        <h3 class="pretitle">Hi, my name is</h3>
+        <div>
+          <img src="/images/amit-weis.svg" alt="Amit Weis" class="hero-image" />
+        </div>
+        <h2 class="subtitle">and I build things.</h2>
 
-          <div class="button-container">
-            <form id="resume-form" action="resume2.pdf" method="get">
-              <button type="submit" class="resume-button" id="resume-button">
-                <img
-                  src="images/resume.svg"
-                  alt="resume"
-                  class="resume-image"
-                />
-                <h1 class="resume-button-text">Résumé</h1>
-              </button>
-            </form>
+        <div class="button-container">
+          <form id="resume-form" action="/resume2.pdf" method="get">
+            <button type="submit" class="resume-button" id="resume-button">
+              <img src="/images/resume.svg" alt="resume" class="resume-image" />
+              <h1 class="resume-button-text">Résumé</h1>
+            </button>
+          </form>
 
-            <form action="portfolio.html" method="get" style="">
-              <button
-                type="button"
-                class="resume-button"
-                onclick="window.location.href = 'portfolio.html'"
-              >
-                <img
-                  src="images/port.svg"
-                  alt=" portfolio"
-                  class="resume-image"
-                />
-                <h1 class="resume-button-text">Portfolio</h1>
-              </button>
-            </form>
-          </div>
+          <form action="/portfolio" method="get">
+            <button
+              type="button"
+              class="resume-button"
+              onclick="window.location.href = '/portfolio'"
+            >
+              <img
+                src="/images/port.svg"
+                alt="portfolio"
+                class="resume-image"
+              />
+              <h1 class="resume-button-text">Portfolio</h1>
+            </button>
+          </form>
         </div>
       </div>
-      <div class="star">
-        <img src="images/star.svg" alt="star" class="star" />
-      </div>
-      <script src="script.js"></script>
-      <script>
-        window.va =
-          window.va ||
-          function () {
-            (window.vaq = window.vaq || []).push(arguments);
-          };
-      </script>
-    </body>
-  </html>
-</doctype>
+    </div>
+    <div class="star">
+      <img src="/images/star.svg" alt="star" class="star" />
+    </div>
+    <script src="/script.js"></script>
+    <script>
+      window.va =
+        window.va ||
+        function () {
+          (window.vaq = window.vaq || []).push(arguments);
+        };
+    </script>
+  </body>
+</html>

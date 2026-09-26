@@ -882,19 +882,26 @@ body.dashboard .portfolio-item {
   inset: 0;
   background: linear-gradient(
     0deg,
-    rgba(29, 27, 32, 0.8) 0%,
-    rgba(29, 27, 32, 0.1) 55%,
-    rgba(29, 27, 32, 0) 100%
+    rgba(29, 27, 32, 0.95) 0%,
+    rgba(29, 27, 32, 0.75) 35%,
+    rgba(29, 27, 32, 0.3) 70%,
+    rgba(29, 27, 32, 0.1) 100%
   );
 }
 
 .proj-card-scrim--feature {
-  background: linear-gradient(
-    90deg,
-    rgba(29, 27, 32, 0.82) 0%,
-    rgba(29, 27, 32, 0.45) 45%,
-    rgba(29, 27, 32, 0) 75%
-  );
+  background:
+    linear-gradient(
+      0deg,
+      rgba(29, 27, 32, 0.6) 0%,
+      rgba(29, 27, 32, 0) 60%
+    ),
+    linear-gradient(
+      90deg,
+      rgba(29, 27, 32, 0.92) 0%,
+      rgba(29, 27, 32, 0.7) 45%,
+      rgba(29, 27, 32, 0.15) 85%
+    );
 }
 
 .proj-card-body {

@@ -28,16 +28,49 @@
         };
     </script>
     <script defer="" src="/_vercel/insights/script.js"></script>
+    <!--
+      Cards pull their preview image (first gallery image) from the matching
+      hidden project detail — see portfolio.js.
+    -->
     <div class="main-hero">
+      <!-- ================= BUILDING ================= -->
+      <section class="portfolio-section">
+        <div class="portfolio-section-header">
+          <h1 class="portfolio-heading">What I am building</h1>
+        </div>
+        <div class="bar"></div>
+        <div class="proj-feature">
+          <article
+            aria-label="Open Waterloo Underwater Technology Team"
+            class="proj-card proj-card--feature"
+            data-target="proj-wutt"
+            role="button"
+            tabindex="0"
+          >
+            <img
+              alt="WUTT"
+              class="proj-card-media"
+              src="images/wutt-crowd.jpg"
+            />
+            <div class="proj-card-scrim proj-card-scrim--feature"></div>
+            <div class="proj-card-body">
+              <h2 class="proj-card-title">
+                Waterloo Underwater Technology Team
+              </h2>
+              <p class="proj-card-blurb">
+                Co-founding a team building an underwater robot.
+              </p>
+              <span class="proj-card-more"
+                >See more <span aria-hidden="true">→</span></span
+              >
+            </div>
+          </article>
+        </div>
+      </section>
       <!-- ================= PROJECTS ================= -->
       <section class="portfolio-section">
         <div class="portfolio-section-header">
-          <img
-            alt="proj"
-            class="main-hero"
-            src="images/proj.svg"
-            style="width: 30%; height: auto"
-          />
+          <h1 class="portfolio-heading">What I built</h1>
         </div>
         <div class="bar"></div>
         <!-- ===== Cards (click a card to open the full project) ===== -->
@@ -58,11 +91,9 @@
             <div class="proj-card-play"></div>
             <div class="proj-card-scrim proj-card-scrim--feature"></div>
             <div class="proj-card-body">
-              <span class="proj-card-chip">Featured · Video</span>
               <h2 class="proj-card-title">Bttrpie</h2>
               <p class="proj-card-blurb">
-                An autonomous mini pool table that collects and sorts pool
-                balls.
+                An autonomous mini pool table that resets itself.
               </p>
               <span class="proj-card-more"
                 >See more <span aria-hidden="true">→</span></span
@@ -80,6 +111,28 @@
             ‹
           </button>
           <div class="proj-carousel" id="projCarousel">
+            <!-- MechMania -->
+            <article
+              aria-label="Open MechMania"
+              class="proj-card"
+              data-target="proj-mechmania"
+              role="button"
+              tabindex="0"
+            >
+              <img
+                alt="MechMania"
+                class="proj-card-media"
+                src="images/mechmania-landing.jpg"
+              />
+              <div class="proj-card-scrim"></div>
+              <div class="proj-card-body">
+                <h3 class="proj-card-title">MechMania</h3>
+                <p class="proj-card-blurb">High school robotics competition</p>
+                <span class="proj-card-more"
+                  >See more <span aria-hidden="true">→</span></span
+                >
+              </div>
+            </article>
             <!-- Warpz -->
             <article
               aria-label="Open Warpz"
@@ -91,7 +144,6 @@
               <img alt="Warpz" class="proj-card-media" src="images/warpz.jpg" />
               <div class="proj-card-scrim"></div>
               <div class="proj-card-body">
-                <span class="proj-card-chip">Photo</span>
                 <h3 class="proj-card-title">Warpz</h3>
                 <p class="proj-card-blurb">Robotic photogrammetry 3D scanner</p>
                 <span class="proj-card-more"
@@ -118,9 +170,57 @@
               <div class="proj-card-play"></div>
               <div class="proj-card-scrim"></div>
               <div class="proj-card-body">
-                <span class="proj-card-chip">Video</span>
                 <h3 class="proj-card-title">VtaR</h3>
-                <p class="proj-card-blurb">VR air guitar in Unity</p>
+                <p class="proj-card-blurb">VR guitar in Unity</p>
+                <span class="proj-card-more"
+                  >See more <span aria-hidden="true">→</span></span
+                >
+              </div>
+            </article>
+            <!-- Forget Me Not -->
+            <article
+              aria-label="Open Forget Me Not"
+              class="proj-card"
+              data-target="proj-fmn"
+              role="button"
+              tabindex="0"
+            >
+              <img
+                alt="Forget Me Not"
+                class="proj-card-media"
+                src="images/fmn-landing.jpg"
+              />
+              <div class="proj-card-scrim"></div>
+              <div class="proj-card-body">
+                <h3 class="proj-card-title">Forget Me Not</h3>
+                <p class="proj-card-blurb">AR glasses that find lost keys</p>
+                <span class="proj-card-more"
+                  >See more <span aria-hidden="true">→</span></span
+                >
+              </div>
+            </article>
+            <!-- AR Tennis (Packet39) -->
+            <article
+              aria-label="Open AR Tennis"
+              class="proj-card"
+              data-target="proj-tennis"
+              role="button"
+              tabindex="0"
+            >
+              <img
+                alt="AR Tennis"
+                class="proj-card-media"
+                src="images/tennis.jpg"
+              />
+              <div class="proj-card-scrim"></div>
+              <span class="proj-card-org">
+                <img alt="" src="images/packet39.png" />@ Packet39
+              </span>
+              <div class="proj-card-body">
+                <h3 class="proj-card-title">AR Tennis</h3>
+                <p class="proj-card-blurb">
+                  Live ball tracking at the Australian Open
+                </p>
                 <span class="proj-card-more"
                   >See more <span aria-hidden="true">→</span></span
                 >
@@ -145,36 +245,8 @@
               <div class="proj-card-play"></div>
               <div class="proj-card-scrim"></div>
               <div class="proj-card-body">
-                <span class="proj-card-chip">Video</span>
                 <h3 class="proj-card-title">ARmatica</h3>
                 <p class="proj-card-blurb">AR overlay for circuit assembly</p>
-                <span class="proj-card-more"
-                  >See more <span aria-hidden="true">→</span></span
-                >
-              </div>
-            </article>
-            <!-- WWLetters -->
-            <article
-              aria-label="Open WWLetters"
-              class="proj-card proj-card--extra"
-              data-target="proj-wwletters"
-              role="button"
-              tabindex="0"
-            >
-              <video
-                class="proj-card-media"
-                muted=""
-                playsinline=""
-                preload="metadata"
-              >
-                <source src="images/parser.mp4" type="video/mp4" />
-              </video>
-              <div class="proj-card-play"></div>
-              <div class="proj-card-scrim"></div>
-              <div class="proj-card-body">
-                <span class="proj-card-chip">Video</span>
-                <h3 class="proj-card-title">WWLetters</h3>
-                <p class="proj-card-blurb">Cleans up WaterlooWorks postings</p>
                 <span class="proj-card-more"
                   >See more <span aria-hidden="true">→</span></span
                 >
@@ -183,7 +255,7 @@
             <!-- Omnivim -->
             <article
               aria-label="Open Omnivim"
-              class="proj-card proj-card--extra"
+              class="proj-card"
               data-target="proj-omnivim"
               role="button"
               tabindex="0"
@@ -199,36 +271,8 @@
               <div class="proj-card-play"></div>
               <div class="proj-card-scrim"></div>
               <div class="proj-card-body">
-                <span class="proj-card-chip">Video</span>
                 <h3 class="proj-card-title">Omnivim</h3>
                 <p class="proj-card-blurb">System-wide Vim keyboard control</p>
-                <span class="proj-card-more"
-                  >See more <span aria-hidden="true">→</span></span
-                >
-              </div>
-            </article>
-            <!-- 3D-snake -->
-            <article
-              aria-label="Open 3D-snake"
-              class="proj-card proj-card--extra"
-              data-target="proj-3dsnake"
-              role="button"
-              tabindex="0"
-            >
-              <video
-                class="proj-card-media"
-                muted=""
-                playsinline=""
-                preload="metadata"
-              >
-                <source src="images/3d_snake_compressed.mp4" type="video/mp4" />
-              </video>
-              <div class="proj-card-play"></div>
-              <div class="proj-card-scrim"></div>
-              <div class="proj-card-body">
-                <span class="proj-card-chip">Video</span>
-                <h3 class="proj-card-title">3D-snake</h3>
-                <p class="proj-card-blurb">Snake on a 5×5×5 LED cube</p>
                 <span class="proj-card-more"
                   >See more <span aria-hidden="true">→</span></span
                 >
@@ -250,12 +294,6 @@
           id="projDots"
           role="tablist"
         ></div>
-        <div class="proj-seemore-wrap">
-          <button class="proj-seemore" id="projSeeMore" type="button">
-            <span class="proj-seemore-label">See more</span>
-            <span aria-hidden="true" class="proj-seemore-arrow">→</span>
-          </button>
-        </div>
       </section>
     </div>
     <!-- ===== Modal ===== -->
@@ -267,6 +305,28 @@
     </div>
     <!-- ===== Hidden project details (cloned into the modal on click) ===== -->
     <div class="proj-details" hidden="">
+      <div id="proj-wutt">
+        <h2 class="proj-modal-title">Waterloo Underwater Technology Team</h2>
+        <div class="gallery">
+          <img alt="WUTT kickoff crowd" src="images/wutt-crowd.jpg" />
+          <img alt="WUTT logo" src="images/wutt-logo.jpg" />
+        </div>
+        <p class="portfolio-text">
+          The internationally acclaimed underwater robotics competition
+          <a href="https://materovcompetition.org/" rel="noopener noreferrer" target="_blank">MATE ROV</a> requires its participating
+          teams to create a remotely operated submarine to complete their
+          gauntlet. The team that I am founding and leading, partnered with
+          industry giants such as Waterloo RoboHub and Impossible Metals, is
+          going to complete this gauntlet completely autonomously. After
+          fundraising over $20,000 and recruiting 50 members, our team will be
+          designing every part of this robot from the ground up.
+        </p>
+        <p class="portfolio-text">
+          See our
+          <a href="https://www.linkedin.com/company/wutt/" rel="noopener noreferrer" target="_blank">LinkedIn</a> or
+          <a href="https://www.instagram.com/u_wutt/" rel="noopener noreferrer" target="_blank">Instagram</a> to stay updated!
+        </p>
+      </div>
       <div id="proj-bttrpie">
         <h2 class="proj-modal-title">Bttrpie</h2>
         <div class="portfolio-video">
@@ -286,74 +346,62 @@
           ></iframe>
         </div>
         <p class="portfolio-text">
-          Bttrpie is an autonomous mini pool table designed to automatically
-          collect and sort modified pool balls using a 3-axis gantry and a
-          custom grabber claw. My team and I designed the entire mechanical
-          system in SolidWorks, validated the design using motion and structural
-          simulations, and fully assembled the robot by hand in the E5 woodshop
-          at the University of Waterloo. See the video above (recommended at 2×
-          speed) to watch the system operate end-to-end.
-        </p>
-        <p class="portfolio-text">
-          The robot begins each run by calibrating itself, allowing the user to
-          place it anywhere on the playing surface without manual alignment.
-          Once calibrated, the system establishes its position in
-          three-dimensional space and infers the locations of all other key
-          features on the table. From this point onward, the robot operates
-          completely blind, tracking its position by converting motor encoder
-          rotations into linear translation through a rack-and-pinion gantry
-          mechanism.
-        </p>
-        <p class="portfolio-text">
-          The 3-axis gantry enables motion in the X, Y, and Z directions using
-          three independently driven rack-and-pinion stages, each powered by a
-          dedicated motor. Rotation of each motor is converted directly into
-          linear motion of the carriage through a fixed gear rack. Motor encoder
-          feedback is used to track position, while a PID controller regulates
-          motor speed to ensure smooth motion and accurate stopping at target
-          locations.
-        </p>
-        <p class="portfolio-text">
-          When the robot reaches the ball collection chute, it identifies each
-          ball using a color sensor mounted beneath the grabber claw. The robot
-          records the position and color of each ball, then executes a simple
-          sorting routine to determine the placement order. Once sorted, the
-          gantry sequentially retrieves each ball and places it in the desired
-          configuration.
-        </p>
-        <p class="portfolio-text">
-          Once sorted, the balls are placed one by one into the triangular rack.
-          Due to time constraints, the triangle’s position was not fully
-          constrained in the robot’s coordinate system, occasionally requiring
-          minor manual intervention, as seen in the video. After placement, the
-          triangle is reset, and the table is ready for the next round of play.
+          Bttrpie is an autonomous mini pool table that resets itself
+          between games. My team and I designed and simulated every part in
+          SolidWorks, then built a custom 3-axis rack-and-pinion gantry with
+          PID motor control that collects, sorts, and racks the balls on its
+          own. Watch the video above (2× speed recommended) to see it run end
+          to end.
         </p>
       </div>
-      <div id="proj-wwletters">
-        <h2 class="proj-modal-title">WWLetters</h2>
-        <div class="portfolio-video">
-          <video
-            autoplay=""
-            controls=""
-            loop=""
-            muted=""
-            playsinline=""
-            preload="none"
-          >
-            <source src="images/parser.mp4" type="video/mp4" />
-            Your browser does not support the video tag.
-          </video>
+      <div id="proj-mechmania">
+        <h2 class="proj-modal-title">MechMania</h2>
+        <div class="gallery">
+          <img alt="MechMania landing page" src="images/mechmania-landing.jpg" />
+          <img alt="A robot on the competition field" src="images/mechmania.jpg" />
+          <img alt="A soccer match between robots" src="images/mechmania-2.jpg" />
+          <img alt="Students working on a robot" src="images/mechmania-3.jpg" />
+          <img alt="Students at the competition" src="images/mechmania-4.jpg" />
         </div>
         <p class="portfolio-text">
-          WWLetters is a website that parses the University of Waterloo's job
-          aggregation page, WaterlooWorks, into clean, readable, and blessfully
-          dark cards. This project was built out of desperation after reading
-          what felt like a thousand job descriptions on WaterlooWorks' blinding
-          white and tiny UI. Paste a posting anywhere on the page and a custom
-          noise-stripping tokeniser extracts the job title, company,
-          responsibilities, requirements, compensation, and application
-          documents. no AI, just regex and section-header matching against
-          WaterlooWorks' fixed layout. See the demo above.
+          When our robotics club couldn't afford a competitive team,
+          there was nowhere accessible for high school students in Waterloo to
+          compete, so I co-founded <a href="https://www.mechmania.ca/" rel="noopener noreferrer" target="_blank">MechMania</a>
+          and led a team of 10+ to build one. Every year, 120+ students from 12
+          schools compete for free, backed by sponsors like Waterloo RoboHub.
+          Now entering its 4th year, it's still going strong under new
+          leadership.
+        </p>
+      </div>
+      <div id="proj-fmn">
+        <h2 class="proj-modal-title">Forget Me Not</h2>
+        <div class="gallery">
+          <img alt="Forget Me Not landing page" src="images/fmn-landing.jpg" />
+          <img alt="Searching for a hacker badge with the glasses" src="images/fmn-badge.jpg" />
+          <img alt="The arrow seen through the lens" src="images/fmn-lens.jpg" />
+        </div>
+        <p class="portfolio-text">
+          Everyone loses their keys.
+          <a href="https://devpost.com/software/justkeys" rel="noopener noreferrer" target="_blank">Forget Me Not</a> is an AR
+          app built at Hack the North 2026 that gives you a constant pointer to
+          whatever you've lost, right in your XREAL One glasses. We trained a
+          custom model to spot the item, calibrated a card to estimate its
+          distance, and bridged it all through Android and Unity to the glasses
+          with only hours to spare.
+        </p>
+      </div>
+      <div id="proj-tennis">
+        <h2 class="proj-modal-title">AR Tennis</h2>
+        <div class="gallery">
+          <img alt="Ball tracking overlay on the court" src="images/tennis.jpg" />
+          <img alt="Rod Laver Arena AR app splash screen" src="images/tennis-2.jpg" />
+        </div>
+        <p class="portfolio-text">
+          At <a href="https://packet39.com/projects/augmented-reality-tennis/" rel="noopener noreferrer" target="_blank">Packet39</a>,
+          I optimized the custom AR engine behind this mobile app for Rod Laver
+          Arena at the Australian Open. Point your phone at the court and it
+          tracks the ball live, showing speed, height, and trajectory, then
+          lets you watch replays from your seat or from any angle.
         </p>
       </div>
       <div id="proj-vtar">
@@ -372,16 +420,9 @@
           </video>
         </div>
         <p class="portfolio-text">
-          VtaR is a VR guitar (hence VtaR) experience built for the Oculus Quest
-          3 that lets you shred like my good friend Ezra Ornstein without the
-          years of practice. See above a video of this little project, and turn
-          your audio on!
-        </p>
-        <p class="portfolio-text">
-          The entire project was built in Unity using the XR Interaction Toolkit
-          to handle all of the VR interaction logic. The hand animations were
-          done using the built in animator in Unity, and the 3D assets were all
-          made in blender or found online.
+          VtaR (VR + guitar) is a Quest 3 app built in Unity to showcase a
+          friend's guitar skills, letting anyone shred without the years of
+          practice. Turn your audio on for the video above!
         </p>
         <p class="portfolio-text" style="font-size: 0.85em; opacity: 0.7">
           <strong>Asset Credits:</strong>
@@ -427,45 +468,15 @@
       </div>
       <div id="proj-warpz">
         <h2 class="proj-modal-title">Warpz</h2>
-        <div class="portfolio-image">
-          <img alt="Project preview" src="images/warpz.jpg" />
+        <div class="gallery">
+          <img alt="Warpz scanner" src="images/warpz.jpg" />
         </div>
         <p class="portfolio-text">
-          Warpz is an automated 3D model generation system that transforms a
-          series of photographs into detailed three-dimensional meshes using
-          photogrammetry. This project was made for a local robotics competition
-          in waterloo, where we won first place. The system integrated Meshroom,
-          an open-source photogrammetry software built on the AliceVision
-          framework, with custom hardware automation to create a hands-off
-          solution for 3D scanning. Users simply place an object on the
-          turntable, and the system handles the entire capture and processing
-          pipeline. See the only surviving image of the project above.
-        </p>
-        <p class="portfolio-text">
-          The hardware system consisted of two primary components: a robotic arm
-          that maintains consistent camera positioning and orientation, and a
-          motorized rotating platform that turns the object being scanned. This
-          automated setup ensured repeatable camera angles around the subject.
-          The robotic arm kept the camera level throughout the capture sequence,
-          eliminating the manual effort typically required in photogrammetry
-          workflows.
-        </p>
-        <p class="portfolio-text">
-          The rotation mechanism divided a full 360-degree revolution into
-          predetermined intervals, capturing 50 photographs as the turntable
-          completes its rotation. The coverage formed by these successive images
-          was required for Meshroom's structure-from-motion algorithms to
-          successfully reconstruct the geometry. Once image capture completed,
-          the photographs are automatically fed into Meshroom's processing
-          pipeline on a sepearte server, fed information via python websockets,
-          which extracts features, matches them across views, and generates the
-          final textured 3D model.
-        </p>
-        <p class="portfolio-text">
-          The project includes both hardware control software running on a
-          Raspberry Pi to coordinate the robotic arm and turntable, and a web
-          interface built with React and TypeScript that allows users to monitor
-          capture progress and download completed models.
+          Warpz is a robotic 3D scanner that won 1st place at a Waterloo
+          robotics competition. Place an object on the turntable, and a robot
+          arm holds the camera steady while 50 photos are taken and streamed to
+          a server that builds a textured 3D model with Meshroom. A React web
+          app lets you watch the scan and download the result.
         </p>
       </div>
       <div id="proj-armatica">
@@ -484,35 +495,10 @@
           </video>
         </div>
         <p class="portfolio-text">
-          ARmatica is an augmented reality app built in Unity that assists
-          during circuit assembly by overlaying a 3D model of a circuit
-          schematic directly onto a physical breadboard. This project was built
-          for Jamhacks, a local 36 hour hackathon, and won third place. See the
-          video attached above for a video of the prototype working. You can
-          also explore the rather delirious github page, where you can track the
-          groups collective sanity levels via the names of the commits.
-        </p>
-        <p class="portfolio-text">
-          The AR experience is powered by a lightweight tracking module that
-          continuously monitors the breadboard's position and orientation,
-          enabling stable overlay registration even as users move around their
-          workspace. The system uses a predetermined tracking marker, in this
-          case a QR code positioned adjacent to the breadboard, which the device
-          camera detects and uses as a spatial reference point. Once the marker
-          is identified, ARmatica establishes the breadboard's location and
-          orientation in three-dimensional space, allowing the virtual circuit
-          model to be accurately overlaid onto the physical surface.
-        </p>
-        <p class="portfolio-text">
-          Due to the nature of making a hackathon project, ARmatica's user
-          workflow is quite convoluted. The workflow begins with the user making
-          a KiCAD file, and exporting it as a STEP file. The user then uploads
-          it to a website, which then uses a flask backend to process it through
-          FreeCAD to generate a glTF file. It then continues to refine the model
-          and add additional information using Blender's CLI tool, and finally
-          exports it as an FBX file which can be used in Unity. This multi-stage
-          conversion is entirely necessary, and we had to fight several
-          different softwares into agreeing to be used like this.
+          ARmatica won 3rd place at JAMHacks, a 36-hour hackathon. The
+          Unity app overlays a 3D model of your circuit directly onto a real
+          breadboard, anchored by a QR code, so you can see exactly where each
+          part goes.
         </p>
       </div>
       <div id="proj-omnivim">
@@ -531,75 +517,10 @@
           </video>
         </div>
         <p class="portfolio-text">
-          Omnivim was a project designed to extend the hyper-efficient Vim text
-          editing motions to the entire computer, eliminating the need for a
-          mouse. It achieves this using several Python libraries and keylogging,
-          emulating Normal, Insert, and Visual modes system-wide. Additionally,
-          a "Mouse" mode allows access to functionality that is typically
-          mouse-exclusive, by controlling the mouse via more keyboard controls.
-        </p>
-        <p class="portfolio-text">
-          I personally use Omnivim all the time as it makes my day-to-day
-          workflow much more efficient. The app includes a helpful tray icon to
-          indicate the current mode, since keybindings perform different actions
-          depending on the mode. See the video above for a short example on how
-          the software works.
-        </p>
-      </div>
-      <div id="proj-3dsnake">
-        <h2 class="proj-modal-title">3D-snake</h2>
-        <div class="portfolio-video">
-          <video
-            autoplay=""
-            controls=""
-            loop=""
-            muted=""
-            playsinline=""
-            preload="none"
-          >
-            <source src="images/3d_snake_compressed.mp4" type="video/mp4" />
-            Your browser does not support the video tag.
-          </video>
-        </div>
-        <p class="portfolio-text">
-          3D-Snake is a physical implementation of the classic snake game,
-          rendered on a 5×5×5 LED matrix cube controlled by an Arduino Mega. The
-          project presents several unique engineering challenges: creating
-          intuitive six-degree-of-freedom control in three-dimensional space,
-          managing the 125 individual LEDs required for the matrix display, and
-          operating within the memory constraints of embedded hardware (less
-          then 1kb of ram!). A video demonstration of the project is available
-          above.
-        </p>
-        <p class="portfolio-text">
-          The control scheme uses a WASD+EQ input mapping, where WASD handles
-          horizontal plane movement while E and Q enable vertical navigation
-          through the cube's layers. Player inputs are transmitted to the
-          Arduino via UDP packets, ensuring low-latency communication between
-          the control interface and the physical display. To address the Arduino
-          Mega's limited 4KB RAM, game logic and state management are
-          distributed across multiple microcontrollers, with one Arduino
-          dedicated to LED matrix control while another handles gameplay
-          processing.
-        </p>
-        <p class="portfolio-text">
-          The LED matrix employs a multiplexed coordinate system that
-          significantly reduces wiring complexity. Twenty-five vertical cathode
-          lines are soldered together, passing through all five horizontal
-          layers of the cube. Each of the five 5×5 planes has its own common
-          anode connection. To illuminate a specific LED, the system activates
-          one vertical line and one horizontal plane simultaneously, which
-          effectively creates a 3D coordinate system where any position can be
-          addressed using just 30 control pins (25 columns + 5 rows) rather than
-          the 125 individual connections that would otherwise be required.
-        </p>
-        <p class="portfolio-text">
-          The Arduino rapidly cycles through each plane in sequence, activating
-          only the LEDs needed for that layer before moving to the next. This
-          technique leverages the human eye's persistence of vision to create
-          the illusion of a fully lit three-dimensional display, but in reality,
-          if you slow down the footage (or if the Arduino lags) you can see that
-          only one LED is on at a time.
+          Omnivim brings Vim's editing motions to your whole computer, so
+          you never need to touch a mouse. Built in Python, it adds Normal,
+          Insert, Visual, and Mouse modes system-wide, with a tray icon showing
+          which mode you're in. I use it every day.
         </p>
       </div>
     </div>
@@ -607,7 +528,6 @@
       (function () {
         var carousel = document.getElementById("projCarousel");
         var dotsWrap = document.getElementById("projDots");
-        var seeMore = document.getElementById("projSeeMore");
         if (!carousel) return;
 
         function isMobile() {
@@ -665,17 +585,6 @@
         carousel.addEventListener("scroll", function () {
           window.requestAnimationFrame(updateActiveDot);
         });
-
-        if (seeMore) {
-          var label = seeMore.querySelector(".proj-seemore-label");
-          seeMore.addEventListener("click", function () {
-            var open = carousel.classList.toggle("show-all");
-            seeMore.classList.toggle("is-open", open);
-            label.textContent = open ? "See less" : "See more";
-            buildDots();
-            updateActiveDot();
-          });
-        }
 
         var prevBtn = document.getElementById("projPrev");
         var nextBtn = document.getElementById("projNext");
